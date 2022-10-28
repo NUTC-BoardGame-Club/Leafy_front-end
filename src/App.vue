@@ -9,6 +9,7 @@
       </div> 
       <div class="content">
         <router-view/>
+        
           
         </div>
     </div>
@@ -29,17 +30,18 @@
   flex:1;
   display:flex;
   flex-direction: column;
-  background-color: #2c3e50;
+  background-color: #3E3C49;
   
 }
-
+@media screen and (max-width: 780px) {
+  .list{
+    display:none;
+  }
+}
 .content{
-  
-  flex: 6;
+  flex: 5;
   display: flex;
   flex-direction: column;
-
-  background-color:firebrick;
 
 }
 
