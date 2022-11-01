@@ -1,23 +1,29 @@
 <template>
   <div id="nav">
-    <div class="appbar">
-
-    </div>
+    <div class="appbar"></div>
     <div class="main">
       <div class="list">
-      
-      </div> 
+        <Sidebar/>
+      </div>
       <div class="content">
-        <router-view/>
-        
-          
-        </div>
+        <Appbar/>
+      
+        <router-view />
+      </div>
     </div>
-
   </div>
-
 </template>
 
+<script>
+import Appbar from './components/Appbar.vue'
+import Sidebar from './components/Sidebar.vue'
+export default {
+  components:{
+    Appbar,
+    Sidebar
+  }
+}
+</script>
 <style scoped>
 .main {
   display: flex;
@@ -25,24 +31,21 @@
   height: 100vh;
 }
 
-.list{
-
-  flex:1;
-  display:flex;
+.list {
+  padding: 12px;
+  flex: 1;
+  display: flex;
   flex-direction: column;
-  background-color: #3E3C49;
-  
+  background-color: #3e3c49;
 }
 @media screen and (max-width: 780px) {
-  .list{
-    display:none;
+  .list {
+    display: none;
   }
 }
-.content{
+.content {
   flex: 5;
   display: flex;
   flex-direction: column;
-
 }
-
 </style>
