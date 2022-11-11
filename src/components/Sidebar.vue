@@ -8,17 +8,17 @@
       <el-col :span="12">
         <p style="color: #9ef7c8; font-size: 20px">Name</p>
         <el-row>
-          <el-col :span="4">
+          <el-col :span="5">
             <el-icon class="setting"><Setting /></el-icon>
           </el-col>
-          <el-col :span="3" style="color: #fff"> Setting </el-col>
+          <el-col :span="4" style="color: #fff;font-size:14px"> Setting </el-col>
         </el-row>
       </el-col>
       <el-col :span="2">
         <el-icon class="arrowLeft"><DArrowLeft /></el-icon>
       </el-col> 
     </el-row>
-    <el-tree :data="tree" :props="defaultProps" default-expand-all="true"> </el-tree>
+    <el-tree :data="tree" :props="defaultProps" default-expand-all="true" node-key="id" highlight-current> </el-tree>
     <div class="sidebar-bottom">
       <el-button>
         <el-icon><EditPen /></el-icon>
@@ -88,15 +88,11 @@ export default {
   color: #FFFFFF;
   
 }
-.el-tree .el-icon-caret-right:before {
-  background: url('https://i.imgur.com/VwcZSCj.png') no-repeat 0 3px;
-  content: '';
-  display: block;
-  width: 16px;
-  height: 16px;
-  font-size: 16px;
-  background-size: 16px;
-}
+.el-tree-node:focus {
+    background-color: #9ef7c8 !important;
+    color: #fff !important;
+  }
+  /*节点失焦时的背景颜色*/
 
 
 .sidebar-bottom {

@@ -18,7 +18,7 @@
           <el-icon><View /></el-icon>
         </el-button>
       </el-button-group>
-      <div style="color:#C8C8C8;margin-left:10px">
+      <div style="color:#C8C8C8;margin-left:10px;">
         Saving...
       </div>
       <div class="flex-grow" />
@@ -48,10 +48,17 @@ export default {
   height: 60px;
 }
 .appbar .el-button-group {
+  height: 32px;
   border-radius: 15px;
 }
 .appbar .el-button-group .el-button {
   background-color: #b5b0b0;
+  border-color: black;
+  color: black;
+  font-size: 20px;
+}
+.appbar .el-button-group .el-button:hover {
+  background-color: #9EF7C8;
   border-color: black;
   color: black;
   font-size: 20px;

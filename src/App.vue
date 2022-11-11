@@ -44,7 +44,7 @@ export default {
   }
 }
 .content {
-  flex: 5;
+  flex: 6;
   display: flex;
   flex-direction: column;
 }

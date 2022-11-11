@@ -1,29 +1,49 @@
 <template>
+  <div class="editbar">
+<!-- implicit style (fas is assumed) -->
+<!-- <el-icon><RefreshLeft /></el-icon> -->
+  </div>
   <div id="editor">
-    <textarea v-model="input" debounce="300"></textarea>
-    <div v-html="mdToHtml"></div>
+    <textarea v-model="input" debounce="300"> </textarea>
+
+    <div v-html="output"></div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import { ref} from "vue";
-// import marked from "marked";
+import { ref, computed } from "vue";
+import { debounce } from "lodash-es";
+import markd from "../tools/markd"
 export default {
   name: "Home",
   setup() {
     const input = ref("# hello vue");
-    const mdToHtml = 0
+    const output = computed(() => markd.cs(input.value));
+    const update = debounce((e) => {
+      input.value = e.target.value;
+    }, 100);
     return {
       input,
-      mdToHtml
+      output,
+      update,
     };
   },
-
 };
 </script>
 
 <style scoped>
+.editbar {
+  background-color: #2F2F3C;
+  height: 39px;
+  width: 49%;
+  border-color: #6F6F6F;
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
+  font-size: 30px;
+  color: #ffff;
+}
+
 html,
 body,
 #editor {
@@ -31,6 +51,7 @@ body,
   height: 100%;
   font-family: "Helvetica Neue", Arial, sans-serif;
   color: #333;
+ 
 }
 
 textarea,
@@ -46,14 +67,15 @@ textarea,
 }
 
 textarea {
-  border: none;
-  border-right: 1px solid #ccc;
+
+ 
   resize: none;
   outline: none;
-  background-color: #f6f6f6;
+  background-color: #2F2F3C;
   font-size: 14px;
   font-family: "Monaco", courier, monospace;
   padding: 20px;
+  color:#ffff
 }
 
 code {
