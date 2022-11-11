@@ -18,7 +18,7 @@ import markd from "../tools/markd"
 export default {
   name: "Home",
   setup() {
-    const input = ref("# hello vue");
+    const input = ref("");
     const output = computed(() => markd.cs(input.value));
     const update = debounce((e) => {
       input.value = e.target.value;
