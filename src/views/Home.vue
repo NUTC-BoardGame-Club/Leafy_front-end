@@ -1,8 +1,9 @@
 <template>
   <div class="editbar">
-<!-- implicit style (fas is assumed) -->
-<!-- <el-icon><RefreshLeft /></el-icon> -->
+    <!-- implicit style (fas is assumed) -->
+    <!-- <el-icon><RefreshLeft /></el-icon> -->
   </div>
+
   <div id="editor">
     <textarea v-model="input" debounce="300"> </textarea>
 
@@ -14,7 +15,7 @@
 // @ is an alias to /src
 import { ref, computed } from "vue";
 import { debounce } from "lodash-es";
-import markd from "../tools/markd"
+import markd from "../tools/markd";
 export default {
   name: "Home",
   setup() {
@@ -34,10 +35,10 @@ export default {
 
 <style scoped>
 .editbar {
-  background-color: #2F2F3C;
+  background-color: #2f2f3c;
   height: 39px;
   width: 49%;
-  border-color: #6F6F6F;
+  border-color: #6f6f6f;
   align-items: center; /* 垂直居中 */
   justify-content: center; /* 水平居中 */
   font-size: 30px;
@@ -51,7 +52,6 @@ body,
   height: 100%;
   font-family: "Helvetica Neue", Arial, sans-serif;
   color: #333;
- 
 }
 
 textarea,
@@ -67,17 +67,24 @@ textarea,
 }
 
 textarea {
-
- 
   resize: none;
   outline: none;
-  background-color: #2F2F3C;
+  background-color: #2f2f3c;
   font-size: 14px;
   font-family: "Monaco", courier, monospace;
   padding: 20px;
-  color:#ffff
+  color: #ffff;
 }
-
+@media screen and (max-width: 780px) {
+  html,
+  body,
+  #editor {
+    display: none;
+  }
+  .editbar {
+    display: none;
+  }
+}
 code {
   color: #f66;
 }
