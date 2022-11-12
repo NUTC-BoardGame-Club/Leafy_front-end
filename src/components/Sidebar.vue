@@ -7,19 +7,25 @@
       ></el-col>
       <el-col :span="12">
         <p style="color: #9ef7c8; font-size: 20px">Name</p>
-  
-          <div class="setting">
-          <el-icon ><Setting /></el-icon>
-          
-          <a :span="4" style="color: #fff;font-size:14px"> Setting </a>
-          </div>
-        
+
+        <div class="setting">
+          <el-icon><Setting /></el-icon>
+
+          <a :span="4" style="color: #fff; font-size: 14px"> Setting </a>
+        </div>
       </el-col>
       <el-col :span="2">
         <el-icon class="arrowLeft"><DArrowLeft /></el-icon>
-      </el-col> 
+      </el-col>
     </el-row>
-    <el-tree :data="tree" :props="defaultProps" default-expand-all="true" node-key="id" highlight-current> </el-tree>
+    <el-tree
+      :data="tree"
+      :props="defaultProps"
+      default-expand-all="true"
+      node-key="id"
+      highlight-current
+    >
+    </el-tree>
     <div class="sidebar-bottom">
       <el-button>
         <el-icon><EditPen /></el-icon>
@@ -30,7 +36,7 @@
         <el-col :span="2">
           <!-- <el-icon><Star /></el-icon> -->
         </el-col>
-        <el-col :span="20" style="color:#D6DBD9">Designed by Leafy </el-col>
+        <el-col :span="20" style="color: #d6dbd9">Designed by Leafy </el-col>
       </el-row>
     </div>
   </div>
@@ -76,29 +82,26 @@ export default {
 </script>
 
 <style scoped>
-.setting{
+.setting {
   color: #9ef7c8;
   font-size: 20px;
-
 }
-.setting:hover{
-  background-color: #D9D9D9 !important;
-  opacity:0.8;
+.setting:hover {
+  background-color: #d9d9d9 !important;
+  opacity: 0.8;
 }
-.arrowLeft{
-  color: #FFFFFF;
+.arrowLeft {
+  color: #ffffff;
   font-size: 20px;
 }
 .el-tree {
   background: rgba(0, 0, 0, 0);
-  color: #FFFFFF;
-  
+  color: #ffffff;
 }
 
-
 .sidebar-bottom {
-	position: relative;
-  top:80%;
+  position: relative;
+  top: 80%;
 }
 .sidebar-bottom .el-button {
   background-color: #daaddd;
@@ -108,19 +111,29 @@ export default {
 }
 </style>
 
-
 <style>
- .el-tree-node:focus > .el-tree-node__content {
-    background-color: #D9D9D9 !important;
-    opacity:0.8;
-    height: 40px;
-    width: 100%;
-   
-  }
+.el-tree-node:focus > .el-tree-node__content {
+  background-color: #d9d9d9 !important;
+  opacity: 0.8;
+  height: 40px;
+  border-right-color: #9ef7c8;
+}
+.el-tree-node:active > .el-tree-node__content {
+  background-color: #d9d9d9 !important;
+  opacity: 0.8;
+  height: 40px;
+  width: 100%;
+  border-right-color: #9ef7c8;
+}
+.el-tree-node__content:hover {
+  background-color: #d9d9d9 !important;
+  opacity: 0.8;
+  height: 40px;
+  border-right-color: #9ef7c8;
  
-  .el-tree-node__content:hover{
-    background: red;
-  }
+
+}
+
 
 
 </style>
