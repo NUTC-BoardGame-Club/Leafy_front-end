@@ -7,12 +7,13 @@
       ></el-col>
       <el-col :span="12">
         <p style="color: #9ef7c8; font-size: 20px">Name</p>
-        <el-row>
-          <el-col :span="5">
-            <el-icon class="setting"><Setting /></el-icon>
-          </el-col>
-          <el-col :span="4" style="color: #fff;font-size:14px"> Setting </el-col>
-        </el-row>
+  
+          <div class="setting">
+          <el-icon ><Setting /></el-icon>
+          
+          <a :span="4" style="color: #fff;font-size:14px"> Setting </a>
+          </div>
+        
       </el-col>
       <el-col :span="2">
         <el-icon class="arrowLeft"><DArrowLeft /></el-icon>
@@ -78,6 +79,11 @@ export default {
 .setting{
   color: #9ef7c8;
   font-size: 20px;
+
+}
+.setting:hover{
+  background-color: #D9D9D9 !important;
+  opacity:0.8;
 }
 .arrowLeft{
   color: #FFFFFF;
@@ -88,16 +94,11 @@ export default {
   color: #FFFFFF;
   
 }
-.el-tree-node:focus {
-    background-color: #9ef7c8 !important;
-    color: #fff !important;
-  }
-  /*节点失焦时的背景颜色*/
 
 
 .sidebar-bottom {
-  position: absolute;
-  bottom: 10px;
+	position: relative;
+  top:80%;
 }
 .sidebar-bottom .el-button {
   background-color: #daaddd;
@@ -105,4 +106,21 @@ export default {
   border-color: #daaddd;
   font-size: 14px;
 }
+</style>
+
+
+<style>
+ .el-tree-node:focus > .el-tree-node__content {
+    background-color: #D9D9D9 !important;
+    opacity:0.8;
+    height: 40px;
+    width: 100%;
+   
+  }
+ 
+  .el-tree-node__content:hover{
+    background: red;
+  }
+
+
 </style>

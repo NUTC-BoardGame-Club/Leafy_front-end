@@ -29,7 +29,7 @@
 
       <el-menu-item index="2">
         <div>
-          <el-icon><MoreFilled /></el-icon>
+          <el-icon style="color:aquamarine"><MoreFilled /></el-icon>
         </div>
       </el-menu-item>
     </el-menu>
