@@ -1,5 +1,5 @@
 <template>
-  <Editbar/>
+  <!-- <Editbar/> -->
 
   <div id="editor">
     <textarea v-model="input" debounce="300"> </textarea>
@@ -13,12 +13,12 @@
 import { ref, computed } from "vue";
 import { debounce } from "lodash-es";
 import markd from "../tools/markd";
-import Editbar from "../components/Editbar.vue";
+// import Editbar from "../components/Editbar.vue";
 export default {
   name: "Home",
-  components:{
-    Editbar
-  },
+  // components:{
+  //   Editbar
+  // },
   setup() {
     const input = ref("");
     const output = computed(() => markd.cs(input.value));
