@@ -127,14 +127,14 @@ export default {
   opacity: 0.9;
   color: #000;
 }
-.el-tree-node:active > .el-tree-node__content {
+.el-tree-node__content:active  {
   background-color: #D9D9D9;
   opacity: 0.9;
   height: 40px;
   color: #000;
 
 }
-.el-tree-node__content:hover {
+.el-tree-node__content:hover  {
   background-color:#D9D9D9;
   opacity: 0.9;
   height: 40px;
