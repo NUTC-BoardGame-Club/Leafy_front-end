@@ -109,8 +109,7 @@ export default {
 .sidebar-bottom {
   position: relative;
   top: 80%;
-  align-items: center; /* 垂直居中 */
-  justify-content: center; /* 水平居中 */
+  text-align: center;
 }
 .sidebar-bottom .el-button {
   background-color: #daaddd;

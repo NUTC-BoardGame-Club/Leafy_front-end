@@ -76,7 +76,13 @@ export default {
   height: 45px;
 }
 
-.editbar .el-button-group .el-button:hover {
-  background-color: #9ef7c8;
+.editbar .el-button-group .el-button:before {
+    background-color: #9ef7c8;
 }
+.editbar .el-button-group .el-button:hover {
+    background-color: #9ef7c8;
+    
+    
+}
+
 </style>
