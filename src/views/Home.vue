@@ -1,6 +1,5 @@
 <template>
   <Editbar />
-
   <div id="editor">
     <textarea v-model="input" debounce="300"> </textarea>
 
