@@ -17,7 +17,7 @@
         </div>
       </el-col>
       <el-col :span="2">
-        <el-icon class="arrowLeft"><DArrowLeft /></el-icon>
+        <img src="https://i.imgur.com/BAJZcn1.png"/>
       </el-col>
     </el-row>
     <el-tree
@@ -125,6 +125,7 @@ export default {
   opacity: 0.8;
   height: 40px;
   border-right-color: #9ef7c8;
+  color: #FFFFFF;
 }
 .el-tree-node:active > .el-tree-node__content {
   background-color: #d9d9d9 !important;
@@ -132,11 +133,13 @@ export default {
   height: 40px;
   width: 100%;
   border-right-color: #9ef7c8;
+  color: #FFFFFF;
 }
 .el-tree-node__content:hover {
   background-color: #d9d9d9 !important;
   opacity: 0.8;
   height: 40px;
+  color: #FFFFFF;
   border-right-color: #9ef7c8;
 }
 </style>
