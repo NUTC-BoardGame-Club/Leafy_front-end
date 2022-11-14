@@ -41,9 +41,7 @@
       <el-button>
         <img src="https://i.imgur.com/8pbD9GQ.png"/>
       </el-button>
-      <el-button>
-        <img src="https://i.imgur.com/M3dRLyC.png"/>
-      </el-button>
+      
       <el-button>
         <img src="https://i.imgur.com/Cnx2Xpc.png"/>
       </el-button>
@@ -60,14 +58,11 @@ export default {
 <style scoped>
 .editbar {
   background-color: #2f2f3c;
-
   width: 49%;
   border-color: #6f6f6f;
   color: #ffff;
 }
-.editbar .el-button-group {
-  border-right-color: #ffff;
-}
+
 .editbar .el-button-group .el-button {
   background: rgba(0, 0, 0, 0);
   align-items: center; /* 垂直居中 */
