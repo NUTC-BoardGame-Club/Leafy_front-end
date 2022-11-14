@@ -1,8 +1,5 @@
 <template>
-  <div class="editbar">
-    <!-- implicit style (fas is assumed) -->
-    <!-- <el-icon><RefreshLeft /></el-icon> -->
-  </div>
+  <Editbar/>
 
   <div id="editor">
     <textarea v-model="input" debounce="300"> </textarea>
@@ -16,8 +13,12 @@
 import { ref, computed } from "vue";
 import { debounce } from "lodash-es";
 import markd from "../tools/markd";
+import Editbar from "../components/Editbar.vue";
 export default {
   name: "Home",
+  components:{
+    Editbar
+  },
   setup() {
     const input = ref("");
     const output = computed(() => markd.cs(input.value));
@@ -34,17 +35,6 @@ export default {
 </script>
 
 <style scoped>
-.editbar {
-  background-color: #2f2f3c;
-  height: 39px;
-  width: 49%;
-  border-color: #6f6f6f;
-  align-items: center; /* 垂直居中 */
-  justify-content: center; /* 水平居中 */
-  font-size: 30px;
-  color: #ffff;
-}
-
 html,
 body,
 #editor {

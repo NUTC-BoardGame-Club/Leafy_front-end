@@ -9,9 +9,11 @@
         <p style="color: #9ef7c8; font-size: 20px">Name</p>
 
         <div class="setting">
-          <el-icon><Setting /></el-icon>
+          <el-button >
+            <el-icon><Setting /></el-icon>
 
-          <a :span="4" style="color: #fff; font-size: 14px"> Setting </a>
+            <a :span="4" style="color: #fff; font-size: 14px"> Setting </a>
+          </el-button>
         </div>
       </el-col>
       <el-col :span="2">
@@ -82,9 +84,13 @@ export default {
 </script>
 
 <style scoped>
-.setting {
+.setting .el-icon {
   color: #9ef7c8;
   font-size: 20px;
+}
+.setting .el-button{
+  background-color: rgba(0, 0, 0, 0);
+  border-color: rgba(0, 0, 0, 0);
 }
 .setting:hover {
   background-color: #d9d9d9 !important;
@@ -102,6 +108,8 @@ export default {
 .sidebar-bottom {
   position: relative;
   top: 80%;
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
 }
 .sidebar-bottom .el-button {
   background-color: #daaddd;
@@ -130,10 +138,5 @@ export default {
   opacity: 0.8;
   height: 40px;
   border-right-color: #9ef7c8;
- 
-
 }
-
-
-
 </style>
