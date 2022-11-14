@@ -71,7 +71,6 @@ export default {
   align-items: center; /* 垂直居中 */
   justify-content: center; /* 水平居中 */
   border-color: rgba(0, 0, 0, 0);
-
   width: 45px;
   height: 45px;
 }

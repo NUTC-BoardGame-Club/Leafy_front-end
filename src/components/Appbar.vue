@@ -9,7 +9,7 @@
     >
       <el-button-group>
         <el-button type="primary">
-          <el-icon><EditPen /></el-icon>
+          <el-icon ><EditPen /></el-icon>
         </el-button>
         <el-button type="primary">
           <el-icon><Reading /></el-icon>
@@ -18,9 +18,7 @@
           <el-icon><View /></el-icon>
         </el-button>
       </el-button-group>
-      <div style="color:#C8C8C8;margin-left:10px;">
-        Saving...
-      </div>
+      <div style="color: #c8c8c8; margin-left: 10px">Saving...</div>
       <div class="flex-grow" />
 
       <el-button class="share">
@@ -28,9 +26,9 @@
       >
 
       <el-menu-item index="2">
-        <div>
-          <el-icon style="color:aquamarine"><MoreFilled /></el-icon>
-        </div>
+        
+          <el-icon style="color:#9ef7c8"><MoreFilled /></el-icon>
+       
       </el-menu-item>
     </el-menu>
   </div>
@@ -58,17 +56,28 @@ export default {
   font-size: 20px;
 }
 .appbar .el-button-group .el-button:hover {
-  background-color: #9EF7C8;
+  background-color: #9ef7c8;
   border-color: black;
   color: black;
   font-size: 20px;
 }
-.share{
-  background-color:#9EF7C8 ;
-  border-color: #9EF7C8;
-  height: 29px;
 
+.share {
+  background-color: #9ef7c8;
+  border-color: #9ef7c8;
+  height: 29px;
 }
+.share:hover{
+  background-color: #F7DE9E;
+  color: #333;
+  border-color: #F7DE9E;
+}
+.share::before{
+  background-color: #F7DE9E;
+  color: #333;
+  border-color: #F7DE9E;
+}
+
 .flex-grow {
   flex-grow: 1;
 }
