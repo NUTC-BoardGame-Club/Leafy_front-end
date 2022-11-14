@@ -26,6 +26,7 @@
       default-expand-all="true"
       node-key="id"
       highlight-current
+   
     >
     </el-tree>
     <div class="sidebar-bottom">
@@ -121,25 +122,22 @@ export default {
 
 <style>
 .el-tree-node:focus > .el-tree-node__content {
-  background-color: #d9d9d9 !important;
-  opacity: 0.8;
+  background-color: #D9D9D9;
   height: 40px;
-  border-right-color: #9ef7c8;
-  color: #FFFFFF;
+  opacity: 0.9;
+  color: #000;
 }
 .el-tree-node:active > .el-tree-node__content {
-  background-color: #d9d9d9 !important;
-  opacity: 0.8;
+  background-color: #D9D9D9;
+  opacity: 0.9;
   height: 40px;
-  width: 100%;
-  border-right-color: #9ef7c8;
-  color: #FFFFFF;
+  color: #000;
+
 }
 .el-tree-node__content:hover {
-  background-color: #d9d9d9 !important;
-  opacity: 0.8;
+  background-color:#D9D9D9;
+  opacity: 0.9;
   height: 40px;
-  color: #FFFFFF;
-  border-right-color: #9ef7c8;
+  color: #000;
 }
 </style>
