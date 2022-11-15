@@ -3,8 +3,6 @@
   <div id="editor">
   
     <textarea v-model="input" debounce="300"></textarea>
-
-   
     <div v-html="output">
       
     </div>
@@ -58,6 +56,12 @@ textarea,
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0 20px;
+
+
+}
+textarea,
+#editor div .pre{
+  background-color: darkgray;
 
 }
 
