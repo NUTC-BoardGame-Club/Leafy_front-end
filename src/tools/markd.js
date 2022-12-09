@@ -88,7 +88,7 @@ export default {
         var start_arr = "";   // 起始標示 e.p. <h1>
         var skip = false;     // 不需節取內容 e.p. <ul>, </ul>
         var ispre = false;    //判斷是不是pre標籤
-        console.log(hc.length);
+        // console.log(hc.length);
         for(var i=0;i<=hc.length-2;i++){ //每筆html處理
             // 推測 前開頭不為 '<' 那就是遇到多行 <p></p> 的狀況
             if(String(hc[i]).substring(0,1) == '<'){
@@ -139,20 +139,20 @@ export default {
               }
               if(fi[0] == "pre"){
                 var last = hc[i].split(start_arr + ">").length;
-                console.log(hc[i].split(start_arr + ">")[last-1]);
+                // console.log(hc[i].split(start_arr + ">")[last-1]);
                 htmll += "<" + start_arr + ">" + hc[i].split(start_arr + ">")[last-1];
                 
-                console.log("html: " + htmll);
+                // console.log("html: " + htmll);
               }
               if(fi[0] == "/code"){
                 htmll += "<" + start_arr + "></pre> ";
-                console.log("html: " + htmll);
+                // console.log("html: " + htmll);
               }
               continue;
             }else{
               //把內容取出來
               var c = hc[i].split(start_arr + ">");
-              console.log("c: " + c);
+              // console.log("c: " + c);
               if(c[1]){
                 if(c[1] != "" ){
                   content = c[1].split("</")[0];
@@ -179,7 +179,7 @@ export default {
               
             // }
             htmll += "<" + start_arr + ">" + content + "</" + start_arr + "> ";
-            console.log("html: " + htmll);
+            // console.log("html: " + htmll);
             
         }
         return htmll;

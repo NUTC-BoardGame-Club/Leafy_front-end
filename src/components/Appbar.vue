@@ -9,7 +9,7 @@
     >
       <el-button-group>
         <el-button type="primary">
-          <el-icon ><EditPen /></el-icon>
+          <el-icon><EditPen /></el-icon>
         </el-button>
         <el-button type="primary">
           <el-icon><Reading /></el-icon>
@@ -26,9 +26,7 @@
       >
 
       <el-menu-item index="2">
-        
-          <el-icon style="color:#9ef7c8"><MoreFilled /></el-icon>
-       
+        <el-icon style="color: #9ef7c8"><MoreFilled /></el-icon>
       </el-menu-item>
     </el-menu>
   </div>
@@ -67,15 +65,15 @@ export default {
   border-color: #9ef7c8;
   height: 29px;
 }
-.share:hover{
-  background-color: #F7DE9E;
+.share:hover {
+  background-color: #f7de9e;
   color: #333;
-  border-color: #F7DE9E;
+  border-color: #f7de9e;
 }
-.share::before{
-  background-color: #F7DE9E;
+.share::before {
+  background-color: #f7de9e;
   color: #333;
-  border-color: #F7DE9E;
+  border-color: #f7de9e;
 }
 
 .flex-grow {

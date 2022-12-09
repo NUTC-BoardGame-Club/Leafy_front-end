@@ -108,7 +108,7 @@ export default {
 
 .sidebar-bottom {
   position: relative;
-  top: 70%;
+
   text-align: center;
 }
 .sidebar-bottom .el-button {

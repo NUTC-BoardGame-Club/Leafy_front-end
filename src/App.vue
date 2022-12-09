@@ -2,11 +2,11 @@
   <div id="nav">
     <div class="appbar"></div>
     <div class="main">
-      <div class="list">
-        <Sidebar/>
+      <div class="list"  v-if="$route.path != '/'">
+        <Sidebar   />
       </div>
-      <div class="content">
-        <Appbar/>
+      <div class="content" >
+        <Appbar  v-if="$route.path != '/'" />
       
         <router-view />
       </div>

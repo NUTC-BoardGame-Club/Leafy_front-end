@@ -1,7 +1,7 @@
 <template>
   <div class="editbar">
     <el-button-group>
-      <el-button>
+      <el-button >
         <img src="https://i.imgur.com/rowfrXL.png" />
       </el-button>
       <el-button>
@@ -10,10 +10,10 @@
     </el-button-group>
 
     <el-button-group>
-      <el-button>
+      <el-button @click="$emit('next', 'bold')">
         <img src="https://i.imgur.com/TCcox0l.png" />
       </el-button>
-      <el-button>
+      <el-button @click="$emit('next', 'slash')">
         <img src="https://i.imgur.com/GEgwJU1.png" />
       </el-button>
       <el-button>
