@@ -29,7 +29,7 @@
    
     >
     </el-tree>
-    <div class="sidebar-bottom">
+    <!-- <div class="sidebar-bottom">
       <el-button>
         <el-icon><EditPen /></el-icon>
         Markdown Style Design</el-button
@@ -37,11 +37,11 @@
       <el-divider></el-divider>
       <el-row>
         <el-col :span="2">
-          <!-- <el-icon><Star /></el-icon> -->
+
         </el-col>
         <el-col :span="20" style="color: #d6dbd9">Designed by Leafy </el-col>
       </el-row>
-    </div>
+    </div> -->
   </div>
 </template>
 

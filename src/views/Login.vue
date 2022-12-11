@@ -1,5 +1,6 @@
 <template>
   <div class="login">
+    <el-alert title="帳號或密碼錯誤請重新登錄!!!" type="error" show-icon  v-if="data.alert"/>
     <div class="login-form1" v-if="(data.loginForm ===1)">
       <div class="logo">
         <img src="https://i.imgur.com/tA0ViM6.png" />
@@ -16,11 +17,11 @@
       </div>
       <br />
       <div class="user-box">
-        <input type="text" name="" />
+        <input type="text" name=""  v-model="data.account" />
         <label>Account</label>
       </div>
       <div class="user-box">
-        <input type="password" name="" />
+        <input type="password" name="" v-model="data.password" />
         <label>Password</label>
       </div>
       <el-button class="signin-btn" @click="login">Sign In</el-button>
@@ -43,7 +44,10 @@ export default {
     const router = useRouter();
 
     const data = reactive({
+        account:'',
+        password:'',
         loginForm:1,
+        alert:false
 
     })
     const loginCutover = ()=>{
@@ -51,7 +55,13 @@ export default {
       
     }
     const login = ()=>{
-        router.push({ name: "Home" });
+        if(data.account=='admin' && data.password=='admin'){
+            router.push({ name: "Home" });
+
+        }else{
+            data.alert=true
+        }
+  
       
     }
     return {
@@ -125,7 +135,7 @@ export default {
   position: relative;
 }
 .login-form2 .user-box input {
-  width: 258px;
+ 
   padding: 10px 0;
   font-size: 16px;
   color: #fff;
@@ -151,6 +161,13 @@ export default {
   color: #76fcf1;
   font-size: 12px;
 }
+.login-box .user-box input:valid ~ label {
+  top: -100px;
+  left: 0;
+  color: #03e9f4;
+  font-size: 12px;
+}
+
 .login-form2 .signin-btn {
   color: #76fcf1;
   border-color: #76fcf1;
