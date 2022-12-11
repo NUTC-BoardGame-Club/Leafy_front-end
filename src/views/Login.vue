@@ -162,7 +162,7 @@ export default {
   font-size: 12px;
 }
 .login-box .user-box input:valid ~ label {
-  top: -100px;
+  top: -300px;
   left: 0;
   color: #03e9f4;
   font-size: 12px;
