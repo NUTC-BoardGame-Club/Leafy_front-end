@@ -11,8 +11,7 @@
         <div class="setting">
           <el-button >
             <el-icon><Setting /></el-icon>
-
-            <a :span="4" style="color: #fff; font-size: 14px"> Setting </a>
+            <a :span="2" style="color: #fff; font-size: 14px"> Setting </a>
           </el-button>
         </div>
       </el-col>
@@ -29,7 +28,7 @@
    
     >
     </el-tree>
-    <!-- <div class="sidebar-bottom">
+    <div class="sidebar-bottom">
       <el-button>
         <el-icon><EditPen /></el-icon>
         Markdown Style Design</el-button
@@ -41,7 +40,7 @@
         </el-col>
         <el-col :span="20" style="color: #d6dbd9">Designed by Leafy </el-col>
       </el-row>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -93,6 +92,10 @@ export default {
   background-color: rgba(0, 0, 0, 0);
   border-color: rgba(0, 0, 0, 0);
 }
+.setting {
+  margin-left: -20px;
+  margin-top: -20px;
+}
 .setting:hover {
   background-color: #d9d9d9 !important;
   opacity: 0.8;
@@ -106,9 +109,10 @@ export default {
   color: #ffffff;
 }
 
-.sidebar-bottom {
-  position: relative;
 
+.sidebar-bottom {
+  position: absolute;
+  top: 700px;
   text-align: center;
 }
 .sidebar-bottom .el-button {
