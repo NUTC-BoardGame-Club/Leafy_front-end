@@ -35,10 +35,8 @@
       >
       <el-divider></el-divider>
       <el-row>
-        <el-col :span="2">
-
-        </el-col>
-        <el-col :span="20" style="color: #d6dbd9">Designed by Leafy </el-col>
+       
+        <el-col style="color: #d6dbd9">Designed by Leafy </el-col>
       </el-row>
     </div>
   </div>
@@ -84,6 +82,9 @@ export default {
 </script>
 
 <style scoped>
+.sidebar{
+   max-height: 100%;
+}
 .setting .el-icon {
   color: #9ef7c8;
   font-size: 20px;
@@ -93,8 +94,8 @@ export default {
   border-color: rgba(0, 0, 0, 0);
 }
 .setting {
-  margin-left: -20px;
-  margin-top: -20px;
+  margin-left: -2%;
+  margin-top: -2%;
 }
 .setting:hover {
   background-color: #d9d9d9 !important;
@@ -111,9 +112,10 @@ export default {
 
 
 .sidebar-bottom {
-  position: absolute;
+  position:absolute;
   top: 700px;
   text-align: center;
+ 
 }
 .sidebar-bottom .el-button {
   background-color: #daaddd;

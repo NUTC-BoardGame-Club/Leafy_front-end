@@ -38,7 +38,7 @@ export default {
   flex-direction: column;
   background-color: #3e3c49;
 }
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 1100px) {
   .list {
     display: none;
   }
