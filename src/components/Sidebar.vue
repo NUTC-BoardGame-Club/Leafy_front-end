@@ -112,17 +112,17 @@ export default {
 
 
 .sidebar-bottom {
-  position:absolute;
-  top: 700px;
+  
+  margin-top:350px;
   text-align: center;
  
-}
-.sidebar-bottom .el-button {
+}.sidebar-bottom .el-button {
   background-color: #daaddd;
   color: #fff;
   border-color: #daaddd;
   font-size: 14px;
 }
+
 </style>
 
 <style>
