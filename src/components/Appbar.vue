@@ -45,10 +45,11 @@ export default {
 }
 .appbar .el-button-group {
   height: 32px;
-  border-radius: 15px;
+  border-radius: 8px;
 }
 .appbar .el-button-group .el-button {
-  background-color: #b5b0b0;
+    
+  background: rgba(181, 176, 176, 0.2);
   border-color: black;
   color: black;
   font-size: 20px;
