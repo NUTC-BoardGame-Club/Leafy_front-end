@@ -83,5 +83,11 @@ export default {
     
     
 }
+@media screen and (max-width: 1324px) {
+  .editbar .el-button-group .el-button  {
+    width: 35px;
+    height: 35px;
+  }
+}
 
 </style>
