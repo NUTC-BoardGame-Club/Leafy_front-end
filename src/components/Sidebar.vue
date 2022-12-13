@@ -28,7 +28,7 @@
    
     >
     </el-tree>
-    <div class="sidebar-bottom">
+    <!-- <div class="sidebar-bottom">
       <el-button>
         <el-icon><EditPen /></el-icon>
         Markdown Style Design</el-button
@@ -38,7 +38,7 @@
        
         <el-col style="color: #d6dbd9">Designed by Leafy </el-col>
       </el-row>
-    </div>
+    </div> -->
   </div>
 </template>
 
