@@ -103,7 +103,7 @@ textarea,
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0 20px;
-  overflow:auto
+  overflow-y:auto
 
 }
 textarea,

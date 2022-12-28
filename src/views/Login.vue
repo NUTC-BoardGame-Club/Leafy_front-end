@@ -58,7 +58,7 @@ export default {
     };
     const login = () => {
       if (data.account == "admin" && data.password == "admin") {
-        router.push({ path: "/index" });
+        router.push({ path: "/index/Page01" });
       } else {
         data.alert = true;
       }
