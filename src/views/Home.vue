@@ -89,7 +89,8 @@ body,
   height: 100%;
   font-family: "Helvetica Neue", Arial, sans-serif;
   color: #333;
-  overflow:scroll
+  overflow:auto
+  
 }
 
 textarea,
@@ -102,7 +103,8 @@ textarea,
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0 20px;
-  overflow:scroll
+  overflow:auto
+
 }
 textarea,
 #editor div .pre {
