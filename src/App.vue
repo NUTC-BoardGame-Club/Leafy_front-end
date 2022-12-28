@@ -2,12 +2,12 @@
   <div id="nav">
     <div class="appbar"></div>
     <div class="main">
-      <div class="list"  v-if="$route.path != '/'">
-        <Sidebar   />
+      <div class="list" v-if="$route.path != '/'">
+        <Sidebar />
       </div>
-      <div class="content" >
-        <Appbar  v-if="$route.path != '/'" />
-      
+      <div class="content">
+        <Appbar v-if="$route.path != '/'" />
+
         <router-view />
       </div>
     </div>
@@ -15,14 +15,14 @@
 </template>
 
 <script>
-import Appbar from './components/Appbar.vue'
-import Sidebar from './components/Sidebar.vue'
+import Appbar from "./components/Appbar.vue";
+import Sidebar from "./components/Sidebar.vue";
 export default {
-  components:{
+  components: {
     Appbar,
-    Sidebar
-  }
-}
+    Sidebar,
+  },
+};
 </script>
 <style scoped>
 .main {

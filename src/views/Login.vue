@@ -1,7 +1,12 @@
 <template>
   <div class="login">
-    <el-alert title="帳號或密碼錯誤請重新登錄!!!" type="error" show-icon  v-if="data.alert"/>
-    <div class="login-form1" v-if="(data.loginForm ===1)">
+    <el-alert
+      title="帳號或密碼錯誤請重新登錄!!!"
+      type="error"
+      show-icon
+      v-if="data.alert"
+    />
+    <div class="login-form1" v-if="data.loginForm === 1">
       <div class="logo">
         <img src="https://i.imgur.com/tA0ViM6.png" />
         <h1>LEAFY</h1>
@@ -11,13 +16,13 @@
       </div>
       <button class="lbtn" @click="loginCutover">Join Us!</button>
     </div>
-    <div class="login-form2" v-if="(data.loginForm ===2)">
+    <div class="login-form2" v-if="data.loginForm === 2">
       <div class="logo">
         <img src="https://i.imgur.com/DSzhvYW.png" />
       </div>
       <br />
       <div class="user-box">
-        <input type="text" name=""  v-model="data.account" />
+        <input type="text" name="" v-model="data.account" />
         <label>Account</label>
       </div>
       <div class="user-box">
@@ -39,35 +44,29 @@
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
 export default {
-    
   setup() {
     const router = useRouter();
 
     const data = reactive({
-        account:'',
-        password:'',
-        loginForm:1,
-        alert:false
-
-    })
-    const loginCutover = ()=>{
-        data.loginForm =2;
-      
-    }
-    const login = ()=>{
-        if(data.account=='admin' && data.password=='admin'){
-            router.push({ name: "Home" });
-
-        }else{
-            data.alert=true
-        }
-  
-      
-    }
+      account: "",
+      password: "",
+      loginForm: 1,
+      alert: false,
+    });
+    const loginCutover = () => {
+      data.loginForm = 2;
+    };
+    const login = () => {
+      if (data.account == "admin" && data.password == "admin") {
+        router.push({ path: "/index" });
+      } else {
+        data.alert = true;
+      }
+    };
     return {
       data,
       loginCutover,
-      login
+      login,
     };
   },
 };
@@ -135,7 +134,6 @@ export default {
   position: relative;
 }
 .login-form2 .user-box input {
- 
   padding: 10px 0;
   font-size: 16px;
   color: #fff;

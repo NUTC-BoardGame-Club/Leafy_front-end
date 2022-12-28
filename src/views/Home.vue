@@ -1,19 +1,23 @@
 <template>
-  <Editbar   @next="editBtn" />
-  
+  <Editbar @next="editBtn" />
+
   <div id="editor">
-    <textarea v-model="input" debounce="300" id  @mouseup="logSelectionWithinInput($event)"></textarea>
-    
-    <div v-html="output" ></div>
+    <textarea
+      v-model="input"
+      debounce="300"
+      id
+      @mouseup="logSelectionWithinInput($event)"
+    ></textarea>
+    <div v-html="output"></div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import { ref, computed,onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { debounce } from "lodash-es";
 import markd from "../tools/markd";
-import Editbar from "../components/Editbar.vue"; 
+import Editbar from "../components/Editbar.vue";
 export default {
   name: "Home",
   components: {
@@ -21,57 +25,46 @@ export default {
   },
   setup() {
     const input = ref("");
-    onMounted(() => {
-
-    });
+    onMounted(() => {});
     const editBtn = (event) => {
-      const textarea = document.querySelector('textarea');
-      console.log(event)
-      if(event == 'bold'){
-  
-        textarea.addEventListener("select", boldSelection,true);
-        return ()=> textarea.removeEventListener("select",boldSelection)
+      const textarea = document.querySelector("textarea");
+      console.log(event);
+      if (event == "bold") {
+        textarea.addEventListener("select", boldSelection, true);
+        return () => textarea.removeEventListener("select", boldSelection);
       }
-      if(event == 'slash'){
-        textarea.addEventListener("select", slashSelection,false);
-
+      if (event == "slash") {
+        textarea.addEventListener("select", slashSelection, false);
       }
-      
-
-      
     };
-    const logSelectionWithinInput =(e)=> {
+    const logSelectionWithinInput = (e) => {
       var selection = e.target.value.substring(
         e.target.selectionStart,
         e.target.selectionEnd
       );
-      console.log(selection)
-       if(input.value === selection){
-         input.value === "*"+selection+"*"
-       }
-    }
+      console.log(selection);
+      if (input.value === selection) {
+        input.value === "*" + selection + "*";
+      }
+    };
 
     const boldSelection = (event) => {
-      
       const selection = event.target.value.substring(
         event.target.selectionStart,
         event.target.selectionEnd
       );
-      if(selection.charAt(0) !='#' && selection.charAt(0) !='*'){
-        input.value ="**"+selection+"**"
+      if (selection.charAt(0) != "#" && selection.charAt(0) != "*") {
+        input.value = "**" + selection + "**";
       }
-      
     };
     const slashSelection = (event) => {
       const selection = event.target.value.substring(
         event.target.selectionStart,
         event.target.selectionEnd
       );
-      if(selection.charAt(0) !='#' && selection.charAt(0) !='*'){
-        input.value ="*"+selection+"*"
+      if (selection.charAt(0) != "#" && selection.charAt(0) != "*") {
+        input.value = "*" + selection + "*";
       }
-      
-     
     };
     const output = computed(() => markd.cs(input.value));
     const update = debounce((e) => {
@@ -82,7 +75,7 @@ export default {
       output,
       update,
       editBtn,
-      logSelectionWithinInput
+      logSelectionWithinInput,
     };
   },
 };
@@ -96,6 +89,7 @@ body,
   height: 100%;
   font-family: "Helvetica Neue", Arial, sans-serif;
   color: #333;
+  overflow:scroll
 }
 
 textarea,
@@ -108,6 +102,7 @@ textarea,
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0 20px;
+  overflow:scroll
 }
 textarea,
 #editor div .pre {
