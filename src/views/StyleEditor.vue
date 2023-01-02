@@ -314,13 +314,13 @@ export default {
 </style>
 
 <style>
-.el-input__wrapper {
+/* .el-input__wrapper {
   background-color: #8888A4;
   color: #ffffff;
 }
 .el-input__inner {
   background-color: #8888A4;
   color: #ffffff;
-}
+} */
 
 </style>
