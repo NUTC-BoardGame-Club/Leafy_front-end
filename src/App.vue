@@ -16,11 +16,29 @@
 
 <script>
 import Appbar from "./components/Appbar.vue";
+import { onMounted } from "vue";
 import Sidebar from "./components/Sidebar.vue";
+import { useRouter } from "vue-router";
 export default {
   components: {
     Appbar,
     Sidebar,
+  },
+  setup() {
+    const router = useRouter();
+    onMounted(() => {
+      //清除token
+      let lastime = localStorage.getItem("lastime");
+      const interval = 3600000;
+     
+      if ((+new Date()) - lastime > interval) {
+        localStorage.removeItem("token");
+        router.push({ path: "/" });
+        console.log("清除token");
+      } else {
+        console.log("时间过短不清除token");
+      }
+    });
   },
 };
 </script>

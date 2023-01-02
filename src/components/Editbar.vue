@@ -42,7 +42,7 @@
         <img src="https://i.imgur.com/8pbD9GQ.png" />
       </el-button>
 
-      <el-button>
+      <el-button  @click="$emit('next', 'styleChoosing')">
         <img src="https://i.imgur.com/Cnx2Xpc.png" />
       </el-button>
     </el-button-group>

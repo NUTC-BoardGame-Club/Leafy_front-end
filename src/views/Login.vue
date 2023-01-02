@@ -41,11 +41,19 @@
 </template>
 
 <script>
-import { reactive } from "vue";
+import { reactive,onMounted } from "vue";
 import { useRouter } from "vue-router";
+import axios from "axios";
+import config from "../../config";
+
 export default {
   setup() {
     const router = useRouter();
+    onMounted(() => {
+       if(localStorage.getItem('token')){
+        router.push({ path: "/index/63a86f15e1d4bfda050d2ae2" });
+       }
+    });
 
     const data = reactive({
       account: "",
@@ -57,11 +65,21 @@ export default {
       data.loginForm = 2;
     };
     const login = () => {
-      if (data.account == "admin" && data.password == "admin") {
-        router.push({ path: "/index/Page01" });
-      } else {
-        data.alert = true;
-      }
+      let LoginData = {
+        email: data.account,
+        password: data.password,
+      };
+      axios.post(`${config.api}/api/auth/login`, LoginData).then((res) => {
+        if (res) {
+          if (res.data.data.Status == "Successed") {
+            localStorage.setItem("token", res.data.data.Data.access_token);
+            localStorage.setItem("lastime",(+new Date()));
+            router.push({ path: "/index/Page01" });
+          }
+        } else {
+          data.alert = true;
+        }
+      });
     };
     return {
       data,

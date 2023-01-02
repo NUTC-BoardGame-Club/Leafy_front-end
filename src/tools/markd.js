@@ -193,16 +193,17 @@
 
 import { marked } from "marked";
 let css0 = {'h1' : {color:"red"},
-'h2' : {color:"#FF9900"},
-'h3' : {color:"#FFFF00"},
-'h4' : {color:"#7FFF00"},
-'h5' : {color:"#1E90FF"},
-'h6' : {color:"#7B68EE"},
-'ul' : {background_color:"yellow",color:"black"}};
+            'h2' : {color:"orange",font_size:"20px"},
+            'h3' : {color:"yellow",border:'solid',font_size:'28px'},
+            'h4' : {color:"green"},
+            'h5' : {color:"blue"},
+            'h6' : {color:"purple"},
+            'ul' : {background_color:"black",color:"white"}};
 export default {
+  
  
 
-   cs(hc){
+   cs(hc,tf){
     hc = marked(hc);
     let htmll = "";
     let content = "";
@@ -260,8 +261,13 @@ export default {
                var ka = css0[start_arr][k] ;
                 st = st+key+ka+";"
               }
-              htmll += "<" + start_arr + ' style=' + st + ">" + content + "\n";
-              console.log("html: " + htmll);
+              if(tf){
+                htmll += "<" + start_arr + ' style=' + st + ">" + content + "\n";
+                console.log("html: " + htmll);
+              }else{                  
+                htmll += "<" + start_arr + ">" + content + "\n";
+                console.log("html: " + htmll);
+              }
               continue;
             }else{
               htmll += "<" + start_arr + ">" + content + "\n";
@@ -306,7 +312,8 @@ export default {
           
         }
 
-        if(start_arr in css0 ){
+        if(tf){
+          if(start_arr in css0 ){
             for(var k in css0[start_arr]){ //把屬性串再一起
               key = k.replace("_","-") + ":";
               ka = css0[start_arr][k] ;
@@ -314,10 +321,15 @@ export default {
             }
             htmll += "<" + start_arr + ' style=' + st + ">" + content + "</" + start_arr + "> \n";
             console.log("html: " + htmll);
+          }else{
+            htmll += "<" + start_arr + ">" + content + "</" + start_arr + "> \n";
+            console.log("html: " + htmll);
+          }
+
         }else{
           htmll += "<" + start_arr + ">" + content + "</" + start_arr + "> \n";
-          console.log("html: " + htmll);
-        } 
+          console.log('html: '+ htmll);
+        }
     }
     return htmll;
 
