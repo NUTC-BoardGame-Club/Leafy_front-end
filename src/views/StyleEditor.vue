@@ -298,7 +298,8 @@ export default {
 }
 
 .el-input__inner {
-  background-color: #b6b6c7;
+  background-color: #8888A4;
+  color: #ffffff;
 }
 @media screen and (max-width: 1150px) {
   .StyleInput {
@@ -314,12 +315,12 @@ export default {
 
 <style>
 .el-input__wrapper {
-  background-color: #b6b6c7;
+  background-color: #8888A4;
+  color: #ffffff;
 }
 .el-input__inner {
-  background-color: #b6b6c7;
+  background-color: #8888A4;
+  color: #ffffff;
 }
-.el-select-dropdown__item {
-  color: #3e3c49;
-}
+
 </style>
