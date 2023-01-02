@@ -212,7 +212,7 @@ export default {
     let skip = false;     // 不需節取內容 e.p. <ul>, </ul>
     let ispre = false;    //判斷是不是pre標籤
     let st = "";
-    console.log(hc.length);
+    // console.log(hc.length);
     for(var i=0;i<=hc.length-2;i++){ //每筆html處理
         content = "";
         // 推測 前開頭不為 '<' 那就是遇到多行 <p></p> 的狀況
@@ -246,7 +246,7 @@ export default {
             start_arr = "";
             
             htmll += hc[i]+"\n";
-            console.log("換行");
+            // console.log("換行");
             continue;
           }
           start_arr = "p";
@@ -266,12 +266,12 @@ export default {
                 console.log("html: " + htmll);
               }else{                  
                 htmll += "<" + start_arr + ">" + content + "\n";
-                console.log("html: " + htmll);
+                // console.log("html: " + htmll);
               }
               continue;
             }else{
               htmll += "<" + start_arr + ">" + content + "\n";
-              console.log("html: " + htmll);
+              // console.log("html: " + htmll);
             }
             
             htmll += "<" + start_arr + "> ";
@@ -289,17 +289,17 @@ export default {
             var last = hc[i].split(start_arr + ">").length;
             htmll += "<" + start_arr + ' style=width:70%;background-color:#DCDCDC;>' + hc[i].split(start_arr + ">")[last-1] + "\n";
             ispre = true;
-            console.log("html: " + htmll);
+            // console.log("html: " + htmll);
           }
           if(fi[0] == "/code"){
             htmll += "</code></pre>\n";
-            console.log("html: " + htmll);
+            // console.log("html: " + htmll);
           }
           continue;
         }else{
           //把內容取出來
           var c = hc[i].split(">");
-          console.log("c: " + c);
+          // console.log("c: " + c);
           if(c[1]){
             if(c[1] != "" ){
               content = c[1].split("</")[0];
@@ -320,15 +320,15 @@ export default {
               st = st+key+ka+";"
             }
             htmll += "<" + start_arr + ' style=' + st + ">" + content + "</" + start_arr + "> \n";
-            console.log("html: " + htmll);
+            // console.log("html: " + htmll);
           }else{
             htmll += "<" + start_arr + ">" + content + "</" + start_arr + "> \n";
-            console.log("html: " + htmll);
+            // console.log("html: " + htmll);
           }
 
         }else{
           htmll += "<" + start_arr + ">" + content + "</" + start_arr + "> \n";
-          console.log('html: '+ htmll);
+          // console.log('html: '+ htmll);
         }
     }
     return htmll;

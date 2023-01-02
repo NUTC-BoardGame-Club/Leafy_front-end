@@ -1,4 +1,4 @@
-<template >
+<template>
   <Editbar @next="editBtn" />
   <el-dialog
     v-model="dialogVisible"
@@ -28,15 +28,15 @@
       </el-row>
     </div>
   </el-dialog>
-  <div id="editor" >
+  <div id="editor">
     <textarea v-model="input" id @mouseup="logSelectionWithinInput($event)"></textarea>
     <div v-html="output"></div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import { ref, computed, onMounted } from "vue";
+
+import { ref, computed, onMounted,watch} from "vue";
 import { debounce } from "lodash-es";
 import markd from "../tools/markd";
 import Editbar from "../components/Editbar.vue";
@@ -54,29 +54,53 @@ export default {
     console.log("to: ", to);
     console.log("from: ", from);
     console.log("=====================");
+    this.id = to.params.id
     axios
-        .get(`${config.api}/api/page/${to.params.id}`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        })
-        .then((res) => {
-        
-           
-            this.input = res.data.data.Data[0].Content;
-          
-        });
-    
+      .get(`${config.api}/api/page/${to.params.id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        this.input = res.data.data.Data[0].Content;
+      });
   },
-  
+
   setup() {
-    const input = ref("acszzdcd");
+    const input = ref("");
+    const id = ref("");
     const loading = ref(true);
     const styleValue = ref(false);
     const dialogVisible = ref(false);
-   
+
+    watch(
+      input,
+      (newValue) => {
+        const pageData = {
+          _id: id.value,
+          Title: "測試標題",
+          Content:input.value,
+          Style: "63ad976d15d0d8f8b50aea73",
+        };
+        console.log(pageData)
+        axios
+          .put(`${config.api}/api/page`,pageData, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          })
+          .then((res) => {
+            console.log(res);
+          });
+        console.log(newValue);
+        // compare objects
+      },
+      { deep: true, immediate: false }
+    );
+
     onMounted(async () => {
-      setTimeout(this.loading=false ,3000)
+      setTimeout((this.loading = false), 3000);
+  
       // const route = useRoute();
       // const id = route.params.id;
       // axios
@@ -87,11 +111,10 @@ export default {
       //   })
       //   .then((res) => {
       //     if (res) {
-        
+
       //       this.input = res.data.data.Data[0].Content;
       //     }
       //   });
-    
     });
     const editBtn = (event) => {
       const textarea = document.querySelector("textarea");
@@ -142,6 +165,7 @@ export default {
     }, 100);
     return {
       input,
+      id,
       loading,
       styleValue,
       dialogVisible,
