@@ -2,6 +2,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Main from '../views/Main.vue'
 import Login from '../views/Login.vue'
+
 import StyleEditor from '../views/StyleEditor.vue'
 const routes = [
   {
@@ -9,7 +10,6 @@ const routes = [
     name:Login,
     component:Login
   },
- 
   {
     path: '/index/:id',
     name: 'Main',
