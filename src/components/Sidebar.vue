@@ -129,6 +129,7 @@ export default {
 };
 </script>
 
+
 <style scoped>
 .sidebar {
   height: 100vh;
