@@ -10,9 +10,9 @@
         <p style="color: #9ef7c8; font-size: 20px">{{ username }}</p>
 
         <div class="setting">
-          <el-button>
+          <el-button @click="mdstyle">
             <el-icon><Setting /></el-icon>
-            <a :span="2" style="color: #fff; font-size: 14px"> Setting </a>
+            <a :span="2" style="color: #fff; font-size: 14px"> Sign out </a>
           </el-button>
         </div>
       </el-col>
@@ -46,9 +46,9 @@
     
     <el-col style="color: #d6dbd9">Designed by Leafy </el-col>
   </div>
-    <!-- <br />
     <br />
-    <el-button @click="mdstyle" class="loginoutBtn">登出 </el-button> -->
+    <br />
+    <!-- <el-button @click="mdstyle" class="loginoutBtn">登出 </el-button> -->
 
     <!-- <el-button  v-if="this.$route.name != '/styleEditor'" >
         <el-icon><EditPen /></el-icon>
@@ -99,7 +99,8 @@ export default {
     
     }
     const mdstyle = () => {
-      router.push({ path: "/styleEditor" });
+      localStorage.clear() 
+      router.push({ path: "/" });
     };
     return {
       username,
@@ -117,7 +118,7 @@ export default {
 <style scoped>
 .sidebar {
   height: 100vh;
-  position: relative;
+  position:static;
 }
 .setting .el-icon {
   color: #9ef7c8;
@@ -145,7 +146,7 @@ export default {
 }
 
 .sidebar-bottom{
-  position: absolute;
+  position: relative;
   bottom: 0;
   left: 0;
 }

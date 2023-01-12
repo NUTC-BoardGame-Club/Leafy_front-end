@@ -35,7 +35,31 @@
       <img src="https://i.imgur.com/Sk0CChC.png" alt="or" />
       <br />
       <br />
-      <el-button class="signup-btn">Sign Up</el-button>
+      <el-button class="signup-btn" @click="registerCutover">Sign Up</el-button>
+    </div>
+    <div class="login-form2"   v-if="data.loginForm === 3">
+      <div class="logo">
+        <img src="https://i.imgur.com/DSzhvYW.png" />
+      </div>
+      <br />
+      <div class="user-box">
+        <input type="text" name="" v-model="data.rusername" />
+        <label>Username</label>
+      </div>
+      <div class="user-box">
+        <input type="text" name="" v-model="data.raccount" />
+        <label>Account</label>
+      </div>
+      <div class="user-box">
+        <input type="password" name="" v-model="data.rpassword" />
+        <label>Password</label>
+      </div>
+      <div class="user-box">
+        <input type="password" name="" v-model="data.rconfirmPassword" />
+        <label>Confirm Password</label>
+      </div>
+      <el-button class="signin-btn" @click="loginCutover">Register</el-button>
+     
     </div>
   </div>
 </template>
@@ -59,6 +83,10 @@ export default {
       account: "",
       password: "",
       loginForm: 1,
+      rusername:"",
+      raccount:"",
+      rpassword:"",
+      rconfirmPassword:"",
       alert: false,
     });
     const loginCutover = () => {
@@ -74,17 +102,23 @@ export default {
           if (res.data.data.Status == "Successed") {
             localStorage.setItem("token", res.data.data.Data.access_token);
             localStorage.setItem("lastime",(+new Date()));
-            router.push({ path: "/index/Page01" });
+            router.push({ path: "/index/63a86f15e1d4bfda050d2ae2" });
           }
         } else {
           data.alert = true;
         }
       });
     };
+    const registerCutover=()=>{
+      data.loginForm = 3;
+      // router.push({ path: "/register" });
+
+    }
     return {
       data,
       loginCutover,
       login,
+      registerCutover
     };
   },
 };

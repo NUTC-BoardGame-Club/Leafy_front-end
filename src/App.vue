@@ -2,7 +2,7 @@
   <div id="nav">
     <div class="appbar"></div>
     <div class="main">
-      <div class="list" v-if="$route.path != '/'">
+      <div class="list" v-if="$route.path != '/' ">
         <Sidebar />
       </div>
       <div class="content">
