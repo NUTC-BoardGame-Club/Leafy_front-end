@@ -82,6 +82,7 @@ export default {
         })
         .then((res) => {
           username.value = res.data.data.Data[0].Name;
+          console.log("Get member api:");
           console.log(res.data.data.Data[0].PageLists[0]);
           data.tree = [res.data.data.Data[0].PageLists[0]];
         });

@@ -19,6 +19,7 @@ import Appbar from "./components/Appbar.vue";
 import { onMounted } from "vue";
 import Sidebar from "./components/Sidebar.vue";
 import { useRouter } from "vue-router";
+
 export default {
   components: {
     Appbar,
@@ -39,6 +40,7 @@ export default {
         console.log("时间过短不清除token");
       }
     });
+
   },
 };
 </script>

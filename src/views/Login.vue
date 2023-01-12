@@ -74,7 +74,7 @@ export default {
           if (res.data.data.Status == "Successed") {
             localStorage.setItem("token", res.data.data.Data.access_token);
             localStorage.setItem("lastime",(+new Date()));
-            router.push({ path: "/index/Page01" });
+            router.push({ path: "/index/63a86f15e1d4bfda050d2ae2" });
           }
         } else {
           data.alert = true;

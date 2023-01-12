@@ -18,7 +18,8 @@
           <el-icon><View /></el-icon>
         </el-button>
       </el-button-group>
-      <div style="color: #c8c8c8; margin-left: 10px">Saving...</div>
+      <div style="color: #c8c8c8; margin-left: 10px" v-if="this.$store.state.saving">Saving...</div>
+      <div style="color: #c8c8c8; margin-left: 10px" v-else>Saved</div>
       <div class="flex-grow" />
 
       <el-button class="share">

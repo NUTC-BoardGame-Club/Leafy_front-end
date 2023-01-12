@@ -30,8 +30,9 @@
   </el-dialog>
   <div id="editor">
     <textarea v-model="input" id @mouseup="logSelectionWithinInput($event)"></textarea>
-    <div v-html="output"></div>
+    <div id="outputPanel" v-html="output"></div>
   </div>
+  <p>{{ $route.params.id }}</p>
 </template>
 
 <script>
@@ -43,6 +44,12 @@ import Editbar from "../components/Editbar.vue";
 // import { useRoute } from "vue-router";
 import axios from "axios";
 import config from "../../config";
+import NProgress from 'nprogress' // progress bar
+import 'nprogress/nprogress.css' // progress bar style
+
+import store from '@/store';
+
+
 export default {
   name: "Main",
   components: {
@@ -55,6 +62,8 @@ export default {
     console.log("from: ", from);
     console.log("=====================");
     this.id = to.params.id
+    NProgress.start();
+    
     axios
       .get(`${config.api}/api/page/${to.params.id}`, {
         headers: {
@@ -63,8 +72,14 @@ export default {
       })
       .then((res) => {
         this.input = res.data.data.Data[0].Content;
+        console.log('Get page api:');
+        console.log(res.data.data.Data[0].Content);
+        console.log(this.$store.state.saving);
       });
+      NProgress.done();
+      // NProgress.remove();
   },
+  
 
   setup() {
     const input = ref("");
@@ -83,6 +98,7 @@ export default {
           Style: "63ad976d15d0d8f8b50aea73",
         };
         console.log(pageData)
+        store.commit('saving')
         axios
           .put(`${config.api}/api/page`,pageData, {
             headers: {
@@ -94,27 +110,40 @@ export default {
           });
         console.log(newValue);
         // compare objects
+        // Todo: 用於展示saving，實作的時候砍掉
+        var t;
+        clearTimeout(t)
+        t = setTimeout(function (){
+            console.log('saved');
+            store.commit('saved')
+        }, 500);
+        // store.commit('saved')
       },
       { deep: true, immediate: false }
     );
 
-    onMounted(async () => {
-      setTimeout((this.loading = false), 3000);
-  
-      // const route = useRoute();
-      // const id = route.params.id;
-      // axios
-      //   .get(`${config.api}/api/page/${id}`, {
-      //     headers: {
-      //       Authorization: `Bearer ${localStorage.getItem("token")}`,
-      //     },
-      //   })
-      //   .then((res) => {
-      //     if (res) {
+    onMounted( () => {
+      console.log(window.location.href)
+      var www = window.location.href;
+      www = www.substring(www.lastIndexOf('/') + 1)
+      
+      // BUG 這裡Router都取不到值
 
-      //       this.input = res.data.data.Data[0].Content;
-      //     }
-      //   });
+    let self_route = `${config.api}/api/page/${www}`;
+    // Todo: undo
+    axios
+      .get(self_route, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        input.value = res.data.data.Data[0].Content;
+        console.log('Get page api:');
+        console.log(res.data.data.Data[0].Content);
+        console.log(this.$store.state.saving);
+      });
+      NProgress.done();
     });
     const editBtn = (event) => {
       const textarea = document.querySelector("textarea");
@@ -179,6 +208,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 .styleCard {
   width: 100%;
   height: 100%;
@@ -208,6 +239,7 @@ textarea,
 #editor div {
   display: inline-block;
   width: 49%;
+  /* width: 100%; */
   height: 100%;
   vertical-align: top;
   -webkit-box-sizing: border-box;
