@@ -32,7 +32,6 @@
     <textarea v-model="input" id @mouseup="logSelectionWithinInput($event)"></textarea>
     <div id="outputPanel" v-html="output"></div>
   </div>
-  <p>{{ $route.params.id }}</p>
 </template>
 
 <script>
