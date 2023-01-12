@@ -17,7 +17,7 @@
         </div>
 
         <div class="setting">
-          <el-button @click="mdstyle">
+          <el-button @click="signout">
             <el-icon><CaretLeft /></el-icon>
             <a :span="2" style="color: #fff; font-size: 14px"> Sign out </a>
           </el-button>
@@ -111,14 +111,19 @@ export default {
       
       router.push({ path: "/setting" });
     }
-    const mdstyle = () => {
+    const signout = () => {
       localStorage.clear() 
       router.push({ path: "/" });
+    };
+    const mdstyle = () => {
+      
+      router.push({ path: "/styleEditor" });
     };
     return {
       username,
       handleNodeClick,
       setting,
+      signout,
       mdstyle,
       tab,
       data,
