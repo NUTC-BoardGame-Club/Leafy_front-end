@@ -37,14 +37,14 @@
       <br />
       <el-button class="signup-btn" @click="registerCutover">Sign Up</el-button>
     </div>
-    <div class="login-form2"   v-if="data.loginForm === 3">
+    <div class="login-form2" v-if="data.loginForm === 3">
       <div class="logo">
         <img src="https://i.imgur.com/DSzhvYW.png" />
       </div>
       <br />
       <div class="user-box">
         <input type="text" name="" v-model="data.rusername" />
-        <label>Username</label>
+        <label>Name</label>
       </div>
       <div class="user-box">
         <input type="text" name="" v-model="data.raccount" />
@@ -58,14 +58,13 @@
         <input type="password" name="" v-model="data.rconfirmPassword" />
         <label>Confirm Password</label>
       </div>
-      <el-button class="signin-btn" @click="loginCutover">Register</el-button>
-     
+      <el-button class="signin-btn" @click="register">Register</el-button>
     </div>
   </div>
 </template>
 
 <script>
-import { reactive,onMounted } from "vue";
+import { reactive, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
 import config from "../../config";
@@ -74,19 +73,19 @@ export default {
   setup() {
     const router = useRouter();
     onMounted(() => {
-       if(localStorage.getItem('token')){
+      if (localStorage.getItem("token")) {
         router.push({ path: "/index/63a86f15e1d4bfda050d2ae2" });
-       }
+      }
     });
 
     const data = reactive({
       account: "",
       password: "",
       loginForm: 1,
-      rusername:"",
-      raccount:"",
-      rpassword:"",
-      rconfirmPassword:"",
+      rusername: "",
+      raccount: "",
+      rpassword: "",
+      rconfirmPassword: "",
       alert: false,
     });
     const loginCutover = () => {
@@ -101,7 +100,7 @@ export default {
         if (res) {
           if (res.data.data.Status == "Successed") {
             localStorage.setItem("token", res.data.data.Data.access_token);
-            localStorage.setItem("lastime",(+new Date()));
+            localStorage.setItem("lastime", +new Date());
             router.push({ path: "/index/63a86f15e1d4bfda050d2ae2" });
           }
         } else {
@@ -109,16 +108,39 @@ export default {
         }
       });
     };
-    const registerCutover=()=>{
+    const registerCutover = () => {
       data.loginForm = 3;
       // router.push({ path: "/register" });
+    };
+    const register = () => {
+      let registerData = {
+        Name: data.rusername,
+        email: data.raccount,
+        password: data.rpassword,
+      };
 
-    }
+      if (data.rconfirmPassword === data.rpassword) {
+        axios.post(`${config.api}/api/member`, registerData).then((res) => {
+          if (res) {
+            if (res.data.data.Status == "Successed") {
+              alert("註冊成功");
+              data.loginForm = 2;
+            }
+          } else {
+            alert("註冊失敗");
+          }
+        });
+      } else {
+        alert("第二次密碼錯誤");
+        data.rconfirmPassword === null;
+      }
+    };
     return {
       data,
       loginCutover,
       login,
-      registerCutover
+      registerCutover,
+      register,
     };
   },
 };

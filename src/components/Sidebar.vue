@@ -10,8 +10,15 @@
         <p style="color: #9ef7c8; font-size: 20px">{{ username }}</p>
 
         <div class="setting">
-          <el-button @click="mdstyle">
+          <el-button @click="setting">
             <el-icon><Setting /></el-icon>
+            <a :span="2" style="color: #fff; font-size: 14px"> Setting </a>
+          </el-button>
+        </div>
+
+        <div class="setting">
+          <el-button @click="signout">
+            <el-icon><CaretLeft /></el-icon>
             <a :span="2" style="color: #fff; font-size: 14px"> Sign out </a>
           </el-button>
         </div>
@@ -99,13 +106,24 @@ export default {
       router.push({ path: `/index/${row.Pageid}` });
     
     }
-    const mdstyle = () => {
+    
+    const setting =()=>{
+      
+      router.push({ path: "/setting" });
+    }
+    const signout = () => {
       localStorage.clear() 
       router.push({ path: "/" });
+    };
+    const mdstyle = () => {
+      
+      router.push({ path: "/styleEditor" });
     };
     return {
       username,
       handleNodeClick,
+      setting,
+      signout,
       mdstyle,
       tab,
       data,
@@ -116,10 +134,11 @@ export default {
 };
 </script>
 
+
 <style scoped>
 .sidebar {
   height: 100vh;
-  position:static;
+  position:relative;
 }
 .setting .el-icon {
   color: #9ef7c8;
@@ -147,7 +166,7 @@ export default {
 }
 
 .sidebar-bottom{
-  position: relative;
+  position:absolute;
   bottom: 0;
   left: 0;
 }
