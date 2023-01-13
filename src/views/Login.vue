@@ -38,10 +38,11 @@
       <el-button class="signup-btn" @click="registerCutover">Sign Up</el-button>
     </div>
     <div class="login-form2" v-if="data.loginForm === 3">
-      <div class="logo">
-        <img src="https://i.imgur.com/DSzhvYW.png" />
+      <div class="logo"  @click="back">
+        <img src="https://i.imgur.com/DSzhvYW.png"  />
       </div>
       <br />
+  
       <div class="user-box">
         <input type="text" name="" v-model="data.rusername" />
         <label>Name</label>
@@ -135,12 +136,16 @@ export default {
         data.rconfirmPassword === null;
       }
     };
+    const back =()=>{
+      data.loginForm = 2;
+    }
     return {
       data,
       loginCutover,
       login,
       registerCutover,
       register,
+       back
     };
   },
 };
@@ -252,6 +257,13 @@ export default {
   border-color: #a1fc76;
   background-color: rgba(0, 0, 0, 0);
   width: 258px;
+  height: 36px;
+}
+.login-form2 .back-btn{
+  color: #DC0000;
+  border-color: #DC0000;
+  background-color: rgba(0, 0, 0, 0);
+  width: 100px;
   height: 36px;
 }
 @media screen and (max-width: 780px) {

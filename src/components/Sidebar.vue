@@ -42,17 +42,14 @@
     <br />
 
     <div class="sidebar-bottom">
+      <el-button v-if="tab === '1'" @click="mdstyle" class="mdstyleBtn">
+        <el-icon><EditPen /></el-icon>
+        Markdown Style Design</el-button
+      >
+      <el-divider></el-divider>
 
-  
-
-    <el-button v-if="tab === '1'" @click="mdstyle" class="mdstyleBtn">
-      <el-icon><EditPen /></el-icon>
-      Markdown Style Design</el-button
-    >
-    <el-divider></el-divider>
-    
-    <el-col style="color: #d6dbd9">Designed by Leafy </el-col>
-  </div>
+      <el-col style="color: #d6dbd9">Designed by Leafy </el-col>
+    </div>
     <br />
     <br />
     <!-- <el-button @click="mdstyle" class="loginoutBtn">登出 </el-button> -->
@@ -61,8 +58,6 @@
         <el-icon><EditPen /></el-icon>
         Back to Markdown Editor</el-button
       > -->
-
-      
   </div>
 </template>
 
@@ -102,21 +97,17 @@ export default {
       label: "label",
     };
     function handleNodeClick(row) {
-     
       router.push({ path: `/index/${row.Pageid}` });
-    
     }
-    
-    const setting =()=>{
-      
+
+    const setting = () => {
       router.push({ path: "/setting" });
-    }
+    };
     const signout = () => {
-      localStorage.clear() 
+      localStorage.clear();
       router.push({ path: "/" });
     };
     const mdstyle = () => {
-      
       router.push({ path: "/styleEditor" });
     };
     return {
@@ -134,11 +125,10 @@ export default {
 };
 </script>
 
-
 <style scoped>
 .sidebar {
   height: 100vh;
-  position:relative;
+  position: relative;
 }
 .setting .el-icon {
   color: #9ef7c8;
@@ -165,8 +155,8 @@ export default {
   color: #ffffff;
 }
 
-.sidebar-bottom{
-  position:absolute;
+.sidebar-bottom {
+  position: absolute;
   bottom: 0;
   left: 0;
 }
@@ -184,7 +174,6 @@ export default {
   border-color: #eb455f;
   font-size: 14px;
   width: 50%;
-  
 }
 </style>
 
