@@ -138,27 +138,21 @@ export default {
         data.rconfirmPassword === null;
       }
     };
-<<<<<<< HEAD
     const aboutusCutover = () =>{
       window.location.href = "https://aboutleafy.louischiang.com/aboutus.html";
     }
 
-=======
     const back =()=>{
       data.loginForm = 2;
     }
->>>>>>> 7357212ba1748e023352b5af73187787312bde10
     return {
       data,
       loginCutover,
       login,
       registerCutover,
       register,
-<<<<<<< HEAD
       aboutusCutover,
-=======
-       back
->>>>>>> 7357212ba1748e023352b5af73187787312bde10
+      back
     };
   },
 };
