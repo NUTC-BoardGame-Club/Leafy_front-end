@@ -142,9 +142,6 @@ export default {
         data.rconfirmPassword === null;
       }
     };
-    const aboutusCutover = () =>{
-      window.location.href = "https://aboutleafy.louischiang.com/aboutus.html";
-    }
 
     const back =()=>{
       data.loginForm = 2;
