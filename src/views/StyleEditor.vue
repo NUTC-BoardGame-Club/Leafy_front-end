@@ -103,6 +103,8 @@
         <p style="color: #f66060">ERROR：不能重複儲存</p> -->
       </div>
     </div>
+    
+    <!-- Show Page -->
     <div class="StyleContent2">
       <div class="main">
         <h1>h1</h1>
@@ -126,6 +128,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import { ref, reactive,onMounted } from "vue";
 import axios from "axios";
