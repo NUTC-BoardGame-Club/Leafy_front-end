@@ -15,6 +15,7 @@
         <p>Your best markdown online editor.</p>
       </div>
       <button class="lbtn" @click="loginCutover">Join Us!</button>
+      <button class="aboutbtn" @click="aboutusCutover">Learn about us~</button>
     </div>
     <div class="login-form2" v-if="data.loginForm === 2">
       <div class="logo">
@@ -91,6 +92,10 @@ export default {
     const loginCutover = () => {
       data.loginForm = 2;
     };
+    const aboutusCutover = () =>{
+      window.location.href = "https://aboutleafy.louischiang.com/aboutus.html";
+    }
+
     const login = () => {
       let LoginData = {
         email: data.account,
@@ -141,6 +146,7 @@ export default {
       login,
       registerCutover,
       register,
+      aboutusCutover,
     };
   },
 };
@@ -176,6 +182,16 @@ export default {
   width: 210px;
   height: 40px;
   color: #000026;
+  font-size: 20px;
+}
+
+.login-form1 .aboutbtn {
+  margin-top: 2%;
+  background-color: #000026;
+  border-radius: 10px;
+  width: 210px;
+  height: 40px;
+  color: #ffffff;
   font-size: 20px;
 }
 .login-form2 {
