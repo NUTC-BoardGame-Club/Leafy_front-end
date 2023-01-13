@@ -15,6 +15,7 @@
         <p>Your best markdown online editor.</p>
       </div>
       <button class="lbtn" @click="loginCutover">Join Us!</button>
+      <button class="aboutbtn" @click="aboutusCutover">Learn about us~</button>
     </div>
     <div class="login-form2" v-if="data.loginForm === 2">
       <div class="logo">
@@ -30,6 +31,7 @@
         <label>Password</label>
       </div>
       <el-button class="signin-btn" @click="login">Sign In</el-button>
+      
       <br />
       <br />
       <img src="https://i.imgur.com/Sk0CChC.png" alt="or" />
@@ -135,12 +137,17 @@ export default {
         data.rconfirmPassword === null;
       }
     };
+    const aboutusCutover = () =>{
+      window.location.href = "https://aboutleafy.louischiang.com/aboutus.html";
+    }
+
     return {
       data,
       loginCutover,
       login,
       registerCutover,
       register,
+      aboutusCutover,
     };
   },
 };
@@ -178,6 +185,17 @@ export default {
   color: #000026;
   font-size: 20px;
 }
+
+.login-form1 .aboutbtn {
+  margin-top: 2%;
+  background-color: #000026;
+  border-radius: 10px;
+  width: 210px;
+  height: 40px;
+  color: #ffffff;
+  font-size: 20px;
+}
+
 .login-form2 {
   position: absolute;
   top: 50%;
