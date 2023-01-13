@@ -47,6 +47,7 @@ import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 
 import store from '@/store';
+// import { text } from "body-parser";
 
 
 export default {
@@ -146,10 +147,26 @@ export default {
     });
     const editBtn = (event) => {
       const textarea = document.querySelector("textarea");
+      
       console.log(event);
+      
       if (event == "bold") {
-        textarea.addEventListener("select", boldSelection, true);
-        return () => textarea.removeEventListener("select", boldSelection);
+        // console.log("inside bold")
+        console.log(window.getSelection().toString())
+        let start = textarea.selectionStart;
+        let end = textarea.selectionEnd;
+        let myselection = textarea.value.substring(start, end);
+        var len = textarea.value.length;
+        let replace = '';
+        
+        // Todo: 沒有判斷Header不能加粗
+        // if (myselection.charAt(0) != "#" && myselection.charAt(0) != "*") {
+        //   replace = "**" + myselection + "**";
+        // }
+        replace = "**" + myselection + "**";
+        console.log(replace)
+        input.value =  textarea.value.substring(0,start) + replace + textarea.value.substring(end,len);
+
       }
       if (event == "slash") {
         textarea.addEventListener("select", slashSelection, false);
@@ -169,15 +186,18 @@ export default {
       }
     };
 
-    const boldSelection = (event) => {
-      const selection = event.target.value.substring(
-        event.target.selectionStart,
-        event.target.selectionEnd
-      );
-      if (selection.charAt(0) != "#" && selection.charAt(0) != "*") {
-        input.value = "**" + selection + "**";
-      }
-    };
+    // const boldSelection = (event) => {
+    //   console.log('bold selection')
+    //   console.log(event.target.selectionStart)
+    //   console.log(event.target.selectionEnd)
+    //   const selection = event.target.value.substring(
+    //     event.target.selectionStart,
+    //     event.target.selectionEnd
+    //   );
+    //   if (selection.charAt(0) != "#" && selection.charAt(0) != "*") {
+    //     input.value = "**" + selection + "**";
+    //   }
+    // };
     const slashSelection = (event) => {
       const selection = event.target.value.substring(
         event.target.selectionStart,
