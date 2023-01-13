@@ -166,7 +166,7 @@ export default {
     };
 
     const signout = () => {
-      localStorage.clear() 
+      localStorage.clear();
       router.push({ path: "/" });
     };
 
@@ -260,11 +260,10 @@ export default {
 };
 </script>
 
-
 <style scoped>
 .sidebar {
   height: 100vh;
-  position:relative;
+  position: relative;
 }
 .setting .el-icon {
   color: #9ef7c8;
@@ -291,8 +290,8 @@ export default {
   color: #ffffff;
 }
 
-.sidebar-bottom{
-  position:absolute;
+.sidebar-bottom {
+  position: absolute;
   bottom: 0;
   left: 0;
 }
@@ -310,7 +309,6 @@ export default {
   border-color: #eb455f;
   font-size: 14px;
   width: 50%;
-  
 }
 </style>
 
