@@ -94,6 +94,10 @@ export default {
     const loginCutover = () => {
       data.loginForm = 2;
     };
+    const aboutusCutover = () =>{
+      window.location.href = "https://aboutleafy.louischiang.com/aboutus.html";
+    }
+
     const login = () => {
       let LoginData = {
         email: data.account,
@@ -138,9 +142,6 @@ export default {
         data.rconfirmPassword === null;
       }
     };
-    const aboutusCutover = () =>{
-      window.location.href = "https://aboutleafy.louischiang.com/aboutus.html";
-    }
 
     const back =()=>{
       data.loginForm = 2;
@@ -200,7 +201,6 @@ export default {
   color: #ffffff;
   font-size: 20px;
 }
-
 .login-form2 {
   position: absolute;
   top: 50%;

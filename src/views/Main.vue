@@ -8,25 +8,29 @@
     style="background-color: #2f2f3c; color: #ffffff"
   >
     <h5>選擇要套用的樣式</h5>
-    <div class="styleCard">
-      <el-row>
-        <el-col :span="5">
-          <el-avatar :size="50" src="https://empty">
-            <img src="https://i.imgur.com/UQxBRVg.png" />
-          </el-avatar>
-        </el-col>
-        <el-col :span="15">
-          <span>我的樣式01</span>
-          <br />
-          <span>我的樣式01的陳述，哈哈哈！</span>
-        </el-col>
-        <el-col :span="4">
-          <el-button @click="(styleValue = true), (dialogVisible = false)"
-            >套用</el-button
-          >
-        </el-col>
-      </el-row>
+    <div v-for="item in data.style" :key="item.Name">
+      
+      <div class="styleCard">
+        <el-row>
+          <el-col :span="5">
+            <el-avatar :size="50" src="https://empty">
+              <img src="https://i.imgur.com/UQxBRVg.png" />
+            </el-avatar>
+          </el-col>
+          <el-col :span="15">
+            <span>{{ item.Name }}</span>
+            <br />
+            <span>{{ item.Content }}</span>
+          </el-col>
+          <el-col :span="4">
+            <el-button @click="(css0.value=item.Style),(formatSytleObject()),(styleValue = true), (dialogVisible = false)"
+              >套用</el-button
+            >
+          </el-col>
+        </el-row>
+      </div>
     </div>
+    
   </el-dialog>
   <div id="editor">
     <textarea v-model="input" id @mouseup="logSelectionWithinInput($event)"></textarea>
@@ -36,7 +40,7 @@
 
 <script>
 
-import { ref, computed, onMounted,watch} from "vue";
+import { ref, computed, onMounted,watch,reactive} from "vue";
 import { debounce } from "lodash-es";
 import markd from "../tools/markd";
 import Editbar from "../components/Editbar.vue";
@@ -79,6 +83,8 @@ export default {
       NProgress.done();
       // NProgress.remove();
   },
+
+  
   
 
   setup() {
@@ -87,6 +93,124 @@ export default {
     const loading = ref(true);
     const styleValue = ref(false);
     const dialogVisible = ref(false);
+    const data = reactive({
+      style: [
+      {
+    "Name": "正式版樣式01",
+    "Style": {
+        "h1": [
+            {
+                "backgroundColor": "#666666",
+                "color": "#666666",
+                "border": "0",
+                "borderColor": "#666666",
+                "marginTop": "0",
+                "marginRight": "0",
+                "marginBottom": "0",
+                "marginLeft": "0",
+                "paddingTop": "0",
+                "paddingRight": "0",
+                "paddingBottom": "0",
+                "paddingLeft": "0"
+            }
+        ],
+        "h2": [
+            {
+                "backgroundColor": "",
+                "color": "",
+                "border": "",
+                "borderColor": "",
+                "marginTop": "",
+                "marginRight": "",
+                "marginBottom": "",
+                "marginLeft": "",
+                "paddingTop": "",
+                "paddingRight": "",
+                "paddingBottom": "",
+                "paddingLeft": ""
+            }
+        ],
+        "h3": [
+            {
+                "backgroundColor": "",
+                "color": "",
+                "border": "",
+                "borderColor": "",
+                "marginTop": "",
+                "marginRight": "",
+                "marginBottom": "",
+                "marginLeft": "",
+                "paddingTop": "",
+                "paddingRight": "",
+                "paddingBottom": "",
+                "paddingLeft": ""
+            }
+        ],
+        "h4": [
+            {
+                "backgroundColor": "",
+                "color": "",
+                "border": "",
+                "borderColor": "",
+                "marginTop": "",
+                "marginRight": "",
+                "marginBottom": "",
+                "marginLeft": "",
+                "paddingTop": "",
+                "paddingRight": "",
+                "paddingBottom": "",
+                "paddingLeft": ""
+            }
+        ],
+        "h5": [
+            {
+                "backgroundColor": "",
+                "color": "",
+                "border": "",
+                "borderColor": "",
+                "marginTop": "",
+                "marginRight": "",
+                "marginBottom": "",
+                "marginLeft": "",
+                "paddingTop": "",
+                "paddingRight": "",
+                "paddingBottom": "",
+                "paddingLeft": ""
+            }
+        ],
+        "h6": [
+            {
+                "backgroundColor": "",
+                "color": "",
+                "border": "",
+                "borderColor": "",
+                "marginTop": "",
+                "marginRight": "",
+                "marginBottom": "",
+                "marginLeft": "",
+                "paddingTop": "",
+                "paddingRight": "",
+                "paddingBottom": "",
+                "paddingLeft": ""
+            }
+        ],
+        "hr": [
+            {
+                "size": "",
+                "color": ""
+            }
+        ]
+    }
+}
+      ],
+    });
+    const css0 = reactive({value:{'h1' : {color:"black"},
+            'h2' : {color:"orange",font_size:"20px"},
+            'h3' : {color:"yellow",border:'solid',font_size:'28px'},
+            'h4' : {color:"green"},
+            'h5' : {color:"blue"},
+            'h6' : {color:"purple"},
+            'ul' : {background_color:"black",color:"white"}}});
 
     watch(
       input,
@@ -121,6 +245,17 @@ export default {
       },
       { deep: true, immediate: false }
     );
+
+    // 用於統一Style格式
+    const formatSytleObject=()=>{
+      console.log("element");
+      css0.value.h1=css0.value.h1[0]
+      css0.value.h2=css0.value.h2[0]
+      css0.value.h3=css0.value.h3[0]
+      css0.value.h4=css0.value.h4[0]
+      css0.value.h5=css0.value.h5[0]
+      css0.value.h6=css0.value.h6[0]
+    }
 
     onMounted( () => {
       console.log(window.location.href)
@@ -187,18 +322,6 @@ export default {
       }
     };
 
-    // const boldSelection = (event) => {
-    //   console.log('bold selection')
-    //   console.log(event.target.selectionStart)
-    //   console.log(event.target.selectionEnd)
-    //   const selection = event.target.value.substring(
-    //     event.target.selectionStart,
-    //     event.target.selectionEnd
-    //   );
-    //   if (selection.charAt(0) != "#" && selection.charAt(0) != "*") {
-    //     input.value = "**" + selection + "**";
-    //   }
-    // };
     const slashSelection = (event) => {
       const selection = event.target.value.substring(
         event.target.selectionStart,
@@ -208,10 +331,30 @@ export default {
         input.value = "*" + selection + "*";
       }
     };
-    const output = computed(() => markd.cs(input.value, styleValue.value));
+    const output = computed(() => {
+      return markd.cs(input.value, styleValue.value,css0.value)
+    });
     const update = debounce((e) => {
       input.value = e.target.value;
     }, 100);
+
+    const updateStyleList=()=>{
+      console.log("updateStyleList");
+      axios
+      .get(`${config.api}/api/style`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        data.style=res.data.data.Data;
+        console.log("finish update");
+      });
+    }
+    onMounted( () => {
+      updateStyleList()
+    });
+
     return {
       input,
       id,
@@ -222,6 +365,9 @@ export default {
       update,
       editBtn,
       logSelectionWithinInput,
+      data,
+      css0,
+      formatSytleObject
     };
   },
 };
@@ -237,6 +383,7 @@ export default {
   color: #ffffff;
   border-style: solid;
   padding-top: 10px;
+  margin-bottom: 20px;
 }
 .styleCard .el-button {
   background-color: #b099f3;

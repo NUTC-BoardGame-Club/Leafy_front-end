@@ -192,18 +192,17 @@
 
 
 import { marked } from "marked";
-let css0 = {'h1' : {color:"red"},
-            'h2' : {color:"orange",font_size:"20px"},
-            'h3' : {color:"yellow",border:'solid',font_size:'28px'},
-            'h4' : {color:"green"},
-            'h5' : {color:"blue"},
-            'h6' : {color:"purple"},
-            'ul' : {background_color:"black",color:"white"}};
+// let css0 = {'h1' : {color:"red"},
+//             'h2' : {color:"orange",font_size:"20px"},
+//             'h3' : {color:"yellow",border:'solid',font_size:'28px'},
+//             'h4' : {color:"green"},
+//             'h5' : {color:"blue"},
+//             'h6' : {color:"purple"},
+//             'ul' : {background_color:"black",color:"white"}};
 export default {
-  
- 
-
-   cs(hc,tf){
+   cs(hc,tf,css0){
+    console.log("css0:")
+    console.log(css0)
     hc = marked(hc);
     let htmll = "";
     let content = "";
