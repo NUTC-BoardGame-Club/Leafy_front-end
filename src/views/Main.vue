@@ -71,7 +71,7 @@ export default {
         },
       })
       .then((res) => {
-        this.input = res.data.data.Data[0].Content;
+        this.input = (res.data.data.Data[0].Content == null) ? "" : res.data.data.Data[0].Content;
         console.log('Get page api:');
         console.log(res.data.data.Data[0].Content);
         console.log(this.$store.state.saving);
@@ -128,31 +128,32 @@ export default {
       www = www.substring(www.lastIndexOf('/') + 1)
       
       // BUG 這裡Router都取不到值
-
-    let self_route = `${config.api}/api/page/${www}`;
-    // Todo: undo
-    axios
-      .get(self_route, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-      .then((res) => {
-        input.value = res.data.data.Data[0].Content;
-        console.log('Get page api:');
-        console.log(res.data.data.Data[0].Content);
-        console.log(this.$store.state.saving);
-      });
+      console.log(www);
+      let self_route = `${config.api}/api/page/${www}`;
+      // Todo: undo
+      axios
+        .get(self_route, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          input.value = res.data.data.Data[0].Content;
+          // console.log('Get page api:');
+          // console.log(res.data.data.Data[0].Content);
+          // console.log(this.$store.state.saving);
+        });
       NProgress.done();
     });
     const editBtn = (event) => {
       const textarea = document.querySelector("textarea");
       
-      console.log(event);
+      // console.log(event);
       
       if (event == "bold") {
         // console.log("inside bold")
-        console.log(window.getSelection().toString())
+        // console.log(window.getSelection().toString())
         let start = textarea.selectionStart;
         let end = textarea.selectionEnd;
         let myselection = textarea.value.substring(start, end);
@@ -164,7 +165,7 @@ export default {
         //   replace = "**" + myselection + "**";
         // }
         replace = "**" + myselection + "**";
-        console.log(replace)
+        // console.log(replace)
         input.value =  textarea.value.substring(0,start) + replace + textarea.value.substring(end,len);
 
       }
@@ -180,7 +181,7 @@ export default {
         e.target.selectionStart,
         e.target.selectionEnd
       );
-      console.log(selection);
+      // console.log(selection);
       if (input.value === selection) {
         input.value === "*" + selection + "*";
       }
