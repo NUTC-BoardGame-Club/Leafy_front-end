@@ -108,7 +108,7 @@ export default {
           if (res.data.data.Status == "Successed") {
             localStorage.setItem("token", res.data.data.Data.access_token);
             localStorage.setItem("lastime", +new Date());
-            router.push({ path: "/index/63a86f15e1d4bfda050d2ae2" });
+            router.push({ path: "/index/63c3ac9d6e98cf939907f4fb" });
           }
         } else {
           data.alert = true;
@@ -128,6 +128,7 @@ export default {
 
       if (data.rconfirmPassword === data.rpassword) {
         axios.post(`${config.api}/api/member`, registerData).then((res) => {
+          console.log(res)
           if (res) {
             if (res.data.data.Status == "Successed") {
               alert("註冊成功");

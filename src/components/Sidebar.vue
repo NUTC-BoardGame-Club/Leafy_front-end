@@ -30,6 +30,15 @@
 
     </el-row>
 
+    <div>
+      <el-button class="createPageBtn"  @click="CreateRootPage">
+        <el-icon style="margin-right: 5px;" ><Plus/></el-icon>
+        Create Root Pages
+      </el-button>
+    </div>
+
+    <hr style="color: #fff;">
+
     <!-- Tree -->
     <el-tree
       v-if="($route.path = '/index/:id')"
@@ -39,14 +48,18 @@
       default-expand-all="true"
       node-key="id"
       highlight-current 
+      expand-on-click-node="true"
     >
       <template #default="{ node, data }">
         <span class="custom-tree-node">
-          <div style="display : inline-block; width:20px;height: 20px; margin-right: 5px;" @click="AddNewPage(data)" >
+          <div style="display : inline-block; width:20px;height: 20px; margin-right: 5px;" 
+                @click="AddNewPage(data)" v-if="data.Index != 3">
+            <!-- 圖 -->
             <img  src="https://i.imgur.com/XGtmPyB.png" 
-                  style="width:15px;height: 15px; margin-right: 10px;" 
+                  style="width:15px;height: 15px;margin-right: 5px;" 
                   alt="新增子頁面"/>
           </div>
+          <div style="display : inline-block; width:10px;" v-else></div>
           <span @click="handleNodeClick(data)" >{{ node.label }}</span>
         </span>
       </template>
@@ -70,23 +83,24 @@
       width="40%"
       height="40%"
       :before-close="handleClose"
-      style="background-color: #2f2f3c; color: #ffffff; border-radius: 5%;">
+      style="background-color: #2f2f3c; color: #ffffff; border-radius: 5%; border-color: #9ef7c0;">
 
       <div class="styleCard">
         <el-row>
           <el-col>
-            <el-avatar :size="100" src="https://empty" style="margin-left: 38%; background-color: #2f2f3c;">
+            <el-avatar :size="100" style="margin-left: 40%; background-color: #2f2f3c;">
               <img src="https://i.imgur.com/9uAcjfV.png" />
+              <!-- <el-icon><QuestionFilled/></el-icon> -->
             </el-avatar>
           </el-col>
 
           <el-col>
-            <div style="color: white; font-size: 40px; text-align:center; margin-right: 28px;">是否要新增?</div>
+            <div style="color: white; font-size: 40px; text-align:center;">是否要新增?</div>
           </el-col>
 
           <el-col>
-            <div style="text-align:center; margin-right: 28px; margin-top: 5px; margin-bottom: 10px;">
-              <input autocomplete="false" type="text" placeholder="輸入題目標籤" v-model="Label_Name"/>
+            <div style="text-align:center; margin-top: 5px; margin-bottom: 10px;">
+              <input autocomplete="false" type="text" placeholder="輸入題目標籤" v-model="AddChild.label"/>
             </div>
           </el-col>
 
@@ -94,12 +108,12 @@
 
         <!-- 確認取消按鈕 -->
         <el-row>
-          <el-col :span="11">
+          <el-col :span="12">
             <el-button style="float:right; margin-right:10px; 
                               background-color: #9ef7c0; border: #9ef7c0;
                               color: #3e3c49;" @click="AddPage">確定</el-button>
           </el-col>
-          <el-col :span="9">
+          <el-col :span="8">
             <el-button style="float:left; margin-left:10px; 
                               background-color: red; border: red;
                               color: white;" @click="dialogVisible = false">取消</el-button>
@@ -114,7 +128,7 @@
 
 <script>
 import { useRouter } from "vue-router";
-import { onMounted, ref, reactive } from "vue";
+import {  onMounted, ref, reactive } from "vue";
 import axios from "axios";
 import config from "../../config";
 
@@ -123,33 +137,152 @@ export default {
   data() {
     return {
       EMast: '',
-      Label_Name: ''
+      Index: '',
+      Label_Name: '',
+      // Page Model
+      NewPage : {
+        Title: "",
+        Content: "",
+        Style: "",
+      },
+      // Control_Block Model
+      AddChild : {
+        label: '',
+        Parent: '',
+        Collaborator: [],
+        Index : 0,
+        Pageid: ""
+      }
     };
   },
+  methods : {
+    AddNewPage(row) {
+      // Add new Page Parent Page id
+      this.AddChild.Parent = row.Pageid;
+      this.AddChild.label = "";
+      this.Index = parseInt(row.Index,10);
+      this.dialogVisible = true;
+    },
+    AddPage() {
+      if(this.AddChild.label == "")
+        return;
+
+      axios.post(`${config.api}/api/page`, this.NewPage, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        if(res.data.data.Status == "Successed"){
+          //Control_Block Model Page id
+          this.AddChild.Pageid = res.data.data.Data;
+          // add page 
+          axios.put(`${config.api}/api/writer`, this.AddChild, {
+            headers: {Authorization: `Bearer ${localStorage.getItem("token")}`},
+          })
+          .then((res) => {
+            if(res.data.data.Status == "Successed"){
+              // 更新 tree
+              this.GetMembers();           
+              this.dialogVisible = false;
+            }
+          });
+        }
+      });
+    },
+    GetMembers() {
+      axios.get(`${config.api}/api/member`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        this.data.tree = [];
+        res.data.data.Data[0].PageLists.forEach(root => this.data.tree.push(root));
+      });
+    },
+    CreateRootPage(){
+      // Add new Page Parent Page id
+      this.AddChild.Parent = "";
+      this.AddChild.label = "";
+      this.Index = 1;
+      this.dialogVisible = true;
+    },
+    AutoCreateRoot() {
+      this.AddChild.Parent = "";
+      this.AddChild.label = "Root001";
+      this.Index = 1;
+    }
+  },
   setup() {
+    const tab = "1";
     const router = useRouter();
     const username = ref("");
     const data = reactive({ tree: [] });
-
-    
     const dialogVisible = ref(false);
 
     onMounted(() => {
-      axios
-        .get(`${config.api}/api/member`, {
+      axios.get(`${config.api}/api/member`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         })
         .then((res) => {
+          data.tree = [];
           username.value = res.data.data.Data[0].Name;
-          console.log("Get member api:");
-          console.log(res.data.data.Data[0].PageLists[0]);
-          data.tree = [res.data.data.Data[0].PageLists[0]];
+          if(res.data.data.Data[0].PageLists != null)
+            res.data.data.Data[0].PageLists.forEach(root => data.tree.push(root));
+          if(data.tree.length  != 0 )
+            router.push({ path: `/index/${res.data.data.Data[0].PageLists[0].Pageid}` });
+          else {
+            console.log("Create Root1");
+            // 建立第一頁
+            let n_Pages = {
+              Title : '測試範例',
+              Content : "# 範例",
+              Style : ""
+            };
+
+            let n_Child = {
+              Parent : "",
+              Index : 1,
+              label : "Root01",
+              Collaborator : []
+            };
+
+            axios.post(`${config.api}/api/page`, n_Pages, {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            })
+            .then((res) => {
+              if(res.data.data.Status == "Successed"){
+                //Control_Block Model Page id
+                n_Child.Pageid = res.data.data.Data;
+                // add page 
+                axios.put(`${config.api}/api/writer`, n_Child, {
+                  headers: {Authorization: `Bearer ${localStorage.getItem("token")}`},
+                })
+                .then((res) => {
+                  if(res.data.data.Status == "Successed"){
+                    // 更新 tree
+                    axios.get(`${config.api}/api/member`, {
+                      headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                      },
+                    })
+                    .then((res) => {
+                      data.tree = [];
+                      res.data.data.Data[0].PageLists.forEach(root => data.tree.push(root));
+                      router.push({ path: `/index/${n_Child.Pageid}` });
+                    });
+                  }
+                });
+              }
+            });
+          }           
         });
     });
-
-    const tab = "1";
 
     const defaultProps = {
       children: "children",
@@ -157,7 +290,6 @@ export default {
     };
 
     function handleNodeClick(row) { 
-      console.log(row);
       router.push({ path: `/index/${row.Pageid}` }); 
     }
     
@@ -174,18 +306,6 @@ export default {
       router.push({ path: "/styleEditor" });
     };
 
-    const renderContent = (h,data) => {
-      return h('span',{},[
-          h("el-button",{
-                        class:'floatSpan',
-                        props:{
-                            type:'danger'
-                        }
-                    },'删除'),
-          h('span',data.data.label)
-      ])
-    };
-
     return {
       username,
       handleNodeClick,
@@ -195,67 +315,8 @@ export default {
       tab,
       data,
       defaultProps,
-      renderContent,
       dialogVisible
-      // PageLists
     };
-  },
-  methods : {
-    AddNewPage(row) {
-      // Add new Page Parent Page id
-      this.EMast = row.Pageid;
-      this.Label_Name = "";
-      this.dialogVisible = true;
-    },
-    AddPage() {
-
-      let NewPage = {
-        Title: "",
-        Content: "",
-        Style: "",
-      };
-
-      let AddChild = {
-        label: this.Label_Name,
-        Parent: this.EMast,
-        Collaborator: [],
-        Index : 0,
-        Pageid: ""
-      };
-
-      axios.post(`${config.api}/api/page`, NewPage, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-      .then((res) => {
-        if(res.data.data.Status == "Successed"){
-          console.log(res);
-          AddChild.Pageid = res.data.data.Data;
-          // add page 
-          axios.put(`${config.api}/api/writer`, AddChild, {
-            headers: {Authorization: `Bearer ${localStorage.getItem("token")}`},
-          })
-          .then((res) => {
-            if(res.data.data.Status == "Successed"){
-              console.log(res);
-              axios.get(`${config.api}/api/member`, {
-                headers: {
-                  Authorization: `Bearer ${localStorage.getItem("token")}`,
-                },
-              })
-              .then((res) => {
-                console.log(res);
-                this.data.tree = [res.data.data.Data[0].PageLists[0]];
-              });
-              
-              this.dialogVisible = false;
-            }
-              
-          });
-        }
-      });
-    }
   }
 };
 </script>
@@ -302,6 +363,16 @@ export default {
   font-size: 14px;
   width: 100%;
   text-align: center;
+}
+.createPageBtn {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  /* border-style: dashed; */
+  font-size: 14px;
+  width: 100%;
+  text-align: center;
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23FF000066' stroke-width='4' stroke-dasharray='10%2c 11' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
 }
 .loginoutBtn {
   background-color: #eb455f;
